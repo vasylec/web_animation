@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+
+
+#space-invader {
+      box-shadow: 0 0 0 1em blue,
+      0 1em 0 1em blue,
+      -2.5em 1.5em 0 .5em blue,
+      2.5em 1.5em 0 .5em blue,
+      -3em -3em 0 0 blue,
+      3em -3em 0 0 blue,
+      -2em -2em 0 0 blue,
+      2em -2em 0 0 blue,
+      -3em -1em 0 0 blue,
+      -2em -1em 0 0 blue,
+      2em -1em 0 0 blue,
+      3em -1em 0 0 blue,
+      -4em 0 0 0 blue,
+      -3em 0 0 0 blue,
+      3em 0 0 0 blue,
+      4em 0 0 0 blue,
+      -5em 1em 0 0 blue,
+      -4em 1em 0 0 blue,
+      4em 1em 0 0 blue,
+      5em 1em 0 0 blue,
+      -5em 2em 0 0 blue,
+      5em 2em 0 0 blue,
+      -5em 3em 0 0 blue,
+      -3em 3em 0 0 blue,
+      3em 3em 0 0 blue,
+      5em 3em 0 0 blue,
+      -2em 4em 0 0 blue,
+      -1em 4em 0 0 blue,
+      1em 4em 0 0 blue,
+      2em 4em 0 0 blue;
+      background: blue;
+      width: 1em;
+      height: 1em;
+      overflow: hidden;
+      margin: 50px 0 70px 65px;
+
+
+      animation: 3.5s invader infinite ease-in-out both ; 
+      position: absolute;
+      left: 20px;
+    }
+
+
+    @keyframes invader{
+        0%{
+            top: 10vh;
+            left: 10vw;
+
+            transform: scale(1);
+            transform: rotate(0deg);
+
+            box-shadow: 0 0 0 1em blue,
+            0 1em 0 1em blue,
+            -2.5em 1.5em 0 .5em blue,
+            2.5em 1.5em 0 .5em blue,
+            -3em -3em 0 0 blue,
+            3em -3em 0 0 blue,
+            -2em -2em 0 0 blue,
+            2em -2em 0 0 blue,
+            -3em -1em 0 0 blue,
+            -2em -1em 0 0 blue,
+            2em -1em 0 0 blue,
+            3em -1em 0 0 blue,
+            -4em 0 0 0 blue,
+            -3em 0 0 0 blue,
+            3em 0 0 0 blue,
+            4em 0 0 0 blue,
+            -5em 1em 0 0 blue,
+            -4em 1em 0 0 blue,
+            4em 1em 0 0 blue,
+            5em 1em 0 0 blue,
+            -5em 2em 0 0 blue,
+            5em 2em 0 0 blue,
+            -5em 3em 0 0 blue,
+            -3em 3em 0 0 blue,
+            3em 3em 0 0 blue,
+            5em 3em 0 0 blue,
+            -2em 4em 0 0 blue,
+            -1em 4em 0 0 blue,
+            1em 4em 0 0 blue,
+            2em 4em 0 0 blue;
+            background: blue;
+
+        }
+        13.5%{
+
+            box-shadow: 0 0 0 1em black,
+            /* 0 1em 0 1em black,
+            -2.5em 1.5em 0 .5em black,
+            2.5em 1.5em 0 .5em black,
+            -3em -3em 0 0 black,
+            3em -3em 0 0 black,
+            -2em -2em 0 0 black,
+            2em -2em 0 0 black,
+            -3em -1em 0 0 black,
+            -2em -1em 0 0 black,
+            2em -1em 0 0 black,
+            3em -1em 0 0 black,
+            -4em 0 0 0 black,
+            -3em 0 0 0 black,
+            3em 0 0 0 black, */
+            4em 0 0 0 black,
+            -5em 1em 0 0 black,
+            -4em 1em 0 0 black,
+            4em 1em 0 0 black,
+            5em 1em 0 0 black,
+            -5em 2em 0 0 black,
+            5em 2em 0 0 black,
+            -5em 3em 0 0 black,
+            -3em 3em 0 0 black,
+            3em 3em 0 0 black,
+            5em 3em 0 0 black,
+            -2em 4em 0 0 black,
+            -1em 4em 0 0 black,
+            1em 4em 0 0 black,
+            2em 4em 0 0 black;
+            background: black;
+        }
+        25%{
+            top: 0vh;
+            left: 70vw;
+
+            transform: rotate(90deg);
+            transform: skew(50deg);
+
+
+            box-shadow: 0 0 0 1em green,
+            /* 0 1em 0 1em green,
+            -2.5em 1.5em 0 .5em green,
+            2.5em 1.5em 0 .5em green,
+            -3em -3em 0 0 green,
+            3em -3em 0 0 green,
+            -2em -2em 0 0 green,
+            2em -2em 0 0 green,
+            -3em -1em 0 0 green,
+            -2em -1em 0 0 green,
+            2em -1em 0 0 green,
+            3em -1em 0 0 green,
+            -4em 0 0 0 green,
+            -3em 0 0 0 green,
+            3em 0 0 0 green,
+            4em 0 0 0 green, */
+            -5em 1em 0 0 green,
+            -4em 1em 0 0 green,
+            4em 1em 0 0 green,
+            5em 1em 0 0 green,
+            -5em 2em 0 0 green,
+            5em 2em 0 0 green,
+            -5em 3em 0 0 green,
+            -3em 3em 0 0 green,
+            3em 3em 0 0 green,
+            5em 3em 0 0 green,
+            -2em 4em 0 0 green,
+            -1em 4em 0 0 green,
+            1em 4em 0 0 green,
+            2em 4em 0 0 green;
+            background: green;
+        }
+        37.5%{
+
+            box-shadow: 0 0 0 1em hotpink,
+            /* 0 1em 0 1em hotpink,
+            -2.5em 1.5em 0 .5em hotpink,
+            2.5em 1.5em 0 .5em hotpink,
+            -3em -3em 0 0 hotpink,
+            3em -3em 0 0 hotpink,
+            -2em -2em 0 0 hotpink,
+            2em -2em 0 0 hotpink,
+            -3em -1em 0 0 hotpink,
+            -2em -1em 0 0 hotpink,
+            2em -1em 0 0 hotpink,
+            3em -1em 0 0 hotpink,
+            -4em 0 0 0 hotpink,
+            -3em 0 0 0 hotpink,
+            3em 0 0 0 hotpink, */
+            4em 0 0 0 hotpink,
+            -5em 1em 0 0 hotpink,
+            -4em 1em 0 0 hotpink,
+            4em 1em 0 0 hotpink,
+            5em 1em 0 0 hotpink,
+            -5em 2em 0 0 hotpink,
+            5em 2em 0 0 hotpink,
+            -5em 3em 0 0 hotpink,
+            -3em 3em 0 0 hotpink,
+            3em 3em 0 0 hotpink,
+            5em 3em 0 0 hotpink,
+            -2em 4em 0 0 hotpink,
+            -1em 4em 0 0 hotpink,
+            1em 4em 0 0 hotpink,
+            2em 4em 0 0 hotpink;
+            background-color: hotpink;
+        }
+        50%{
+            left: 70vw;
+            top: 60vh;
+            transform: skew(-30deg);
+            /* transform: scale(2); */
+
+            box-shadow: 0 0 0 1em crimson,
+            /* 0 1em 0 1em crimson,
+            -2.5em 1.5em 0 .5em crimson,
+            2.5em 1.5em 0 .5em crimson,
+            -3em -3em 0 0 crimson,
+            3em -3em 0 0 crimson,
+            -2em -2em 0 0 crimson,
+            2em -2em 0 0 crimson,
+            -3em -1em 0 0 crimson,
+            -2em -1em 0 0 crimson,
+            2em -1em 0 0 crimson,
+            3em -1em 0 0 crimson,
+            -4em 0 0 0 crimson,
+            -3em 0 0 0 crimson,
+            3em 0 0 0 crimson,
+            4em 0 0 0 crimson, */
+            -5em 1em 0 0 crimson,
+            -4em 1em 0 0 crimson,
+            4em 1em 0 0 crimson,
+            5em 1em 0 0 crimson,
+            -5em 2em 0 0 crimson,
+            5em 2em 0 0 crimson,
+            -5em 3em 0 0 crimson,
+            -3em 3em 0 0 crimson,
+            3em 3em 0 0 crimson,
+            5em 3em 0 0 crimson,
+            -2em 4em 0 0 crimson,
+            -1em 4em 0 0 crimson,
+            1em 4em 0 0 crimson,
+            2em 4em 0 0 crimson;
+            background: crimson;
+        }
+        62.5%{
+            transform: scale(2);
+
+            box-shadow: 0 0 0 1em blue,
+            0 1em 0 1em blue,
+            -2.5em 1.5em 0 .5em blue,
+            2.5em 1.5em 0 .5em blue,
+            -3em -3em 0 0 red,
+            3em -3em 0 0 red,
+            -2em -2em 0 0 red,
+            2em -2em 0 0 red,
+            -3em -1em 0 0 blue,
+            -2em -1em 0 0 blue,
+            2em -1em 0 0 blue,
+            3em -1em 0 0 blue,
+            -4em 0 0 0 blue,
+            -3em 0 0 0 blue,
+            3em 0 0 0 blue,
+            4em 0 0 0 blue,
+            -5em 1em 0 0 blue,
+            -4em 1em 0 0 blue,
+            4em 1em 0 0 blue,
+            5em 1em 0 0 blue,
+            -5em 2em 0 0 blue,
+            5em 2em 0 0 blue,
+            -5em 3em 0 0 blue,
+            -3em 3em 0 0 blue,
+            3em 3em 0 0 blue,
+            5em 3em 0 0 blue,
+            -2em 4em 0 0 blue,
+            -1em 4em 0 0 blue,
+            1em 4em 0 0 blue,
+            2em 4em 0 0 blue;
+            background-color: darkgoldenrod ;
+        }
+        75%{
+            left: 15vw;
+            top: 60vh;
+
+            transform: scale(3);
+            transform: rotate(-180deg);
+
+            box-shadow: 0 0 0 1em gold,
+            /* 0 1em 0 1em gold,
+            -2.5em 1.5em 0 .5em gold,
+            2.5em 1.5em 0 .5em gold, */
+            /* -3em -3em 0 0 gold, */
+            /* 3em -3em 0 0 gold, */
+            /* -2em -2em 0 0 gold, */
+            /* 2em -2em 0 0 gold, */
+            -3em -1em 0 0 gold,
+            -2em -1em 0 0 gold,
+            2em -1em 0 0 gold,
+            3em -1em 0 0 gold,
+            -4em 0 0 0 gold,
+            -3em 0 0 0 gold,
+            3em 0 0 0 gold,
+            4em 0 0 0 gold,
+            -5em 1em 0 0 gold,
+            -4em 1em 0 0 gold,
+            4em 1em 0 0 gold,
+            5em 1em 0 0 gold,
+            -5em 2em 0 0 gold,
+            5em 2em 0 0 gold,
+            -5em 3em 0 0 gold,
+            -3em 3em 0 0 gold,
+            3em 3em 0 0 gold,
+            5em 3em 0 0 gold,
+            -2em 4em 0 0 gold,
+            -1em 4em 0 0 gold,
+            1em 4em 0 0 gold,
+            2em 4em 0 0 gold;
+            background :gold;
+        }
+        87.5%{
+
+            transform: rotate(120deg);
+
+            box-shadow: 0 0 0 1em gainsboro,
+            0 1em 0 1em gainsboro,
+            -2.5em 1.5em 0 .5em gainsboro,
+            2.5em 1.5em 0 .5em gainsboro,
+            -3em -3em 0 0 gainsboro,
+            3em -3em 0 0 gainsboro,
+            -2em -2em 0 0 gainsboro,
+            2em -2em 0 0 gainsboro,
+            -3em -1em 0 0 gainsboro,
+            -2em -1em 0 0 gainsboro,
+            2em -1em 0 0 gainsboro,
+            3em -1em 0 0 gainsboro,
+            -4em 0 0 0 gainsboro,
+            -3em 0 0 0 gainsboro,
+            3em 0 0 0 gainsboro,
+            4em 0 0 0 gainsboro,
+            -5em 1em 0 0 gainsboro,
+            -4em 1em 0 0 gainsboro,
+            4em 1em 0 0 gainsboro,
+            5em 1em 0 0 gainsboro,
+            -5em 2em 0 0 gainsboro,
+            5em 2em 0 0 gainsboro,
+            -5em 3em 0 0 gainsboro,
+            -3em 3em 0 0 gainsboro,
+            3em 3em 0 0 gainsboro,
+            5em 3em 0 0 gainsboro,
+            -2em 4em 0 0 gainsboro,
+            -1em 4em 0 0 gainsboro,
+            1em 4em 0 0 gainsboro,
+            2em 4em 0 0 gainsboro;
+            background-color:gainsboro;
+        }
+        100%{
+
+            transform: scale(1);
+            
+            top: 10vh;
+            left: 10vw;
+        }
+    }
+
+
+</style>
+<body>
+    <div id="space-invader"></div>
+</body>
+</html>
