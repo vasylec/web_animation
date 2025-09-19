@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: black;
+    } 
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    #unu, #doi, #trei, #patru{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+
+        animation: 3.5s loading infinite ease-in-out both;
+    }
+
+
+    #doi{
+        margin-bottom: 300px;
+        margin-right: 300px;
+        background-color: blue;
+
+        animation: 2s moveDoi infinite ease-in-out both 0ms;
+    }
+    #unu{
+        margin-bottom: 300px;
+        margin-left: 300px;
+        background-color: red;
+        border-radius: 0%;
+
+        animation: 2s moveUnu infinite ease-in-out both 0ms;
+    }
+    #trei{
+        
+        margin-top: 300px;
+        margin-left: 300px;
+        background-color: green;
+        
+        animation: 2s moveTrei infinite ease-in-out both 0ms;
+    }
+    #patru{
+        margin-top: 300px;
+        margin-right: 300px;
+        background-color: yellow;
+        border-radius: 0%;
+
+        animation: 2s movePatru infinite ease-in-out both 0ms;
+    }
+
+
+
+    @keyframes moveUnu{
+        0%{
+            margin-bottom: 300px;
+            margin-left: 300px;
+
+            border-radius: 0%;
+
+            transform: scale(1);
+
+        }
+        25%{
+            margin-top: 300px;
+            margin-left: 300px;
+            margin-bottom: 0px;
+
+            border-radius: 50%;
+
+            transform: scale(1.5);
+
+        }
+        50%{
+            margin-top: 300px;
+            margin-right: 300px;
+            margin-left: 0px;
+
+            border-radius: 0%;
+
+            transform: scale(1);
+
+        }
+        75%{
+            margin-bottom: 300px;
+            margin-right: 300px;
+            margin-top: 0px;
+
+            border-radius: 50%;
+
+            transform: scale(1.5);
+
+        }
+        100%{
+            margin-bottom: 300px;
+            margin-left: 300px;
+            margin-right: 0px;
+
+            border-radius: 0%;
+
+        }
+    }
+
+    @keyframes moveDoi{
+        0%{
+            margin-bottom: 300px;
+            margin-right: 300px;
+
+            border-radius: 50%;
+
+            transform: scale(1.5);
+
+        }
+        25%{
+            margin-bottom: 300px;
+            margin-left: 300px;
+            margin-right: 0px;
+
+            border-radius: 0%;
+
+            transform: scale(1);
+
+        }
+        50%{
+            margin-top: 300px;
+            margin-left: 300px;
+            margin-bottom: 0px;
+
+            border-radius: 50%;
+
+            transform: scale(1.5);
+
+        }
+        75%{
+            margin-bottom: 0px;
+            margin-right: 300px;
+            margin-left: 0px;
+
+            border-radius: 0%;
+
+            transform: scale(1);
+
+        }
+        100%{
+            margin-bottom: 300px;
+            margin-right: 300px;
+
+            border-radius: 50%;
+
+            transform: scale(1.5);
+
+        }
+    }
+
+    @keyframes moveTrei{
+        0%{
+            margin-top: 300px;
+            margin-left: 300px;
+
+            border-radius: 50%;
+
+            transform: scale(1);
+
+        }
+        25%{
+            margin-top: 300px;
+            margin-right: 300px;
+            margin-left: 0px;
+
+            border-radius: 0%;
+
+            transform: scale(1.5);
+
+        }
+        50%{
+            margin-bottom: 300px;
+            margin-right: 300px;
+            margin-top: 0px;
+
+            border-radius: 50%;
+
+            transform: scale(1);
+
+        }
+        75%{
+            margin-bottom: 300px;
+            margin-right: 0px;
+            margin-left: 300px;
+
+            border-radius: 0%;
+
+            transform: scale(1.5);
+
+
+        }
+        100%{
+            margin-top: 300px;
+            margin-left: 300px;
+            margin-bottom: 0px;
+
+            border-radius: 50%;
+
+            transform: scale(1);
+
+        }
+    }
+
+    @keyframes movePatru{
+        0%{
+            margin-top: 300px;
+            margin-right: 300px;
+
+            border-radius: 0%;
+
+            transform: scale(1.5);
+        }
+        25%{
+            margin-bottom: 300px;
+            margin-right: 300px;
+            margin-top: 0px;
+
+            border-radius: 50%;
+
+            transform: scale(1);
+        }
+        50%{
+            margin-bottom: 300px;
+            margin-right: 0px;
+            margin-left: 300px;
+
+            border-radius: 0%;
+
+            transform: scale(1.5);
+            
+        }
+        75%{
+            margin-bottom: 0px;
+            margin-left: 300px;
+            margin-top: 300px;
+
+            border-radius: 50%;
+
+            transform: scale(1);
+
+        }
+        100%{
+            margin-top: 300px;
+            margin-right: 300px;
+            margin-left: 0px;
+
+            transform: scale(1.5);
+        }
+    }
+
+
+    @keyframes patrat-cerc{
+        0%{
+            border-radius: 0%;
+        }
+        25%{
+            border-radius: 50%;
+        }
+        50%{
+            border-radius: 0%;
+            border-radius: 0%;
+            
+        }
+        75%{
+            border-radius: 50%;
+            
+        }
+        100%{
+            border-radius: 0%;
+        }
+    }
+    @keyframes cerc-patrat{
+        0%{
+            border-radius: 50%;
+        }
+        25%{
+            border-radius: 0%;
+        }
+        50%{
+            border-radius: 50%;
+            
+        }
+        75%{
+            border-radius: 0%;
+            
+        }
+        100%{
+            border-radius: 50%;
+        }
+    }
+
+
+
+</style>
+<body>
+    <div class="container">
+        <div id="unu"></div>
+        <div id="doi"></div>
+        <div id="trei"></div>
+        <div id="patru"></div>
+    </div>
+</body>
+</html>
