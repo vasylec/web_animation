@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="animation.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        overflow-x: hidden;
+    }
+    header{
+        background-color: #3b3d42;
+    }
+    hr{
+        height: 5px;
+        width: 100px;
+        border: none;
+        background-color: white;
+    }
+    header>div{
+        height: 90px;
+        font-family: Roboto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        ul{
+            display: flex;
+            list-style: none;
+            font-size: 20px;
+
+            gap: 20px;
+            
+            a:hover{
+                color: #f7992b;
+                
+            }
+            a{
+                color: white;
+                text-decoration: none;  
+                
+                transition: 0.3s ease-in-out;
+            }
+        }
+    }
+
+
+
+    .container{
+        width: 80vw;
+        margin: 0 auto;
+    }
+.home-page {
+    height: 865px;
+    width: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .6)),
+        url(19566.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+section.home-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    
+    color: white;
+    font-family: Roboto;
+
+    h2{
+        font-size: 72px;
+        letter-spacing: 5px;
+        font-weight: 900;
+    }
+    p{
+        font-size: 42px;
+        font-weight: normal;
+        font-family: Didact Gothic;
+    }
+    button{
+        margin-top: 20px;
+        padding: 18px 38px 18px 47px;
+        background-color: #f7992b;
+        font-family: Didact Gothic;
+        border: 0px;
+        letter-spacing: 5px;
+        font-size: 24px;
+        color: white;
+        font-weight: bold;
+        transition: .2s ease-in-out;
+    }
+    button:hover{
+        background-color: transparent;
+        border: 1px solid #f7992b;
+        color:#f7992b;
+        cursor: pointer;
+    }
+}
+
+section.about-company{
+    height: 500px;
+    display: flex;
+    
+    margin-top: 50px;
+    margin-bottom: 50px;
+    .container{
+        display: flex;
+
+    }
+
+
+    .about-company-title{
+        width: 40%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+
+        >div{
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+
+        p{
+            font-size: 14px;
+            font-family: Montserrat;
+            
+
+            transform: translate(80%);
+            opacity: 0;
+        }
+        p.show{
+            animation: p-anime 1s ease-in-out forwards;
+        }
+        h3{
+            text-transform: uppercase;
+            font-family: Roboto;
+            font-size: 42px;
+
+            opacity: 0;
+            transform: translate(-200px);
+        }
+        h3.show{
+            animation: h3-anime 1s ease-in-out forwards;
+        }
+        hr{
+            height: 5px;
+            background-color: #f7992b;
+            border: 0px;
+            width: 20%;
+
+            opacity: 0;
+        }
+        hr.show {
+            animation: hr-anime 1s ease-in-out forwards;
+        }
+
+    }
+    .about-company-desc{
+        width: 60%;
+        height: 100%;
+
+        font-family: Roboto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        >div{
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            line-height: 40px;
+            font-family: Montserrat;
+        }
+    }
+}
+
+section.examples{
+
+    height: 500px;
+    /* z-index: 2; */
+
+    .container{
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        >div{            
+            height: 650px;
+            width: 500px;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            a{
+                margin-top: 500px;
+                font-style: normal;
+                text-decoration: none;
+                color: white;
+                font-family: Oswald;
+                font-size: 32px;
+                text-align: center;
+                font-weight: bold;
+                /* width: 600px; */
+                transition: 0.3s ease-in-out;
+            }
+            a:hover{
+                color: #f7992b;
+            }
+        }
+        div:nth-of-type(1){
+            background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url(https://www.casa-de-acasa.ro/wp-content/uploads/2022/05/3-450x600.jpg); 
+        
+            opacity: 0;
+
+
+            
+        }
+        div:nth-of-type(1).show{
+            animation: img-1 1.5s forwards;
+            
+        }
+        div:nth-of-type(2){
+            background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url(https://atradius.us/.imaging/focalpoint/articleCard/800x600/dam/jcr:2807cda7-16c3-465c-ac7b-43a5a6a2a361/products-credit-specialties-hero.jpg);
+        
+            opacity: 0;
+            
+        }
+        div:nth-of-type(2).show{
+            animation: img-2 1.5s forwards;
+        }
+
+        div:nth-of-type(3){
+            background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url(https://archello.com/thumbs/images/2015/06/09/The-Forum-Hong-Kong-Project-Design-Director--Ke-4.1506076827.7736.jpg?fit=crop&w=1260&h=840);
+        
+            
+            opacity: 0;
+        }
+        div:nth-of-type(3).show{        
+            animation: img-3 1.5s forwards;
+        }
+    }   
+}
+
+
+
+section.testimonials-advantages{
+    height: 700px;
+    /* background-color: #f7992b; */
+    margin-top: 50px;
+
+
+    div.container{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 800px;
+        div{
+            /* height: 100%; */
+            /* background-color: red; */
+            transform: translateY(340px) translateX(-200px);
+            width: 40%;
+            /* background-color: red; */
+            padding-left: 5%;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            row-gap: 50px;
+
+            h4{
+                font-family: Roboto;
+                font-weight: normal;
+                font-size: 18px;
+
+            }
+            h2{
+                font-family: Roboto;
+                font-weight: bold;
+                font-size: 42px;
+            }
+            hr{
+                height: 5px;
+                width: 100px;
+                border: none;
+                background-color: #f7992b;
+            }
+            p{
+                font-size: 18px;
+                font-family: Montserrat;
+                line-height: 40px;
+                font-style: italic;
+
+            }
+
+            button{
+                padding: 25px;
+                width: 300px;
+                letter-spacing: 10px;
+                font-size: 18px;
+                font-family: Roboto;
+                background-color: transparent;
+                border:#f7992b 2px solid;
+                color: #f7992b;
+                transition: 0.2s ease-in-out;
+            }
+            button:hover{
+                cursor: pointer;
+                background-color: #f7992b;
+                color: white;
+            }
+            
+        }
+        
+
+        
+    }
+    .advantages{
+        height: 950px;
+        width: 70%;
+        background-color: black;
+        position: absolute;
+        z-index: -2;
+        transform: translateY(250px);
+
+        
+
+    }
+    .testimonials{
+        height: 1090px;
+        width: 50%;
+        background-color: #f7992b;
+        position: absolute;
+        right: 0;
+        z-index: -1;
+        transform: translateY(-200px);
+
+        
+        background-image: 
+            linear-gradient(rgba(247, 153 , 43, 0.9), rgba(247, 153, 43, 0.9)),
+            url(https://plus.unsplash.com/premium_photo-1676657954811-9409c4830467?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+        
+        background-size: cover;
+        background-position: center;
+
+
+        >div{
+            margin-left: 100px;
+
+            p{
+                font-size: 2500%;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color: rgba(255, 255, 255, 0.3);
+            }
+            #testimonials-text{
+                transform: translateY(-80px) translateX(80px);
+                font-size: 80%;
+                font-family: Roboto;
+                color: white;
+                text-transform: uppercase;
+                line-height: 30px;
+            }
+            div{
+                
+                margin-right: 20%;
+
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+
+                hr{
+                    height: 6px;
+                    width: 15%;
+                    background-color: white;
+                    border: none;
+                }
+                h3{
+                    font-family: Roboto;
+                    font-size: 36px;
+                    color: white;
+                }
+                p{
+                    font-family: Montserrat;
+                    font-size: 24px;
+                    opacity: 1;
+                    color: white;
+                    font-style: italic;
+                    line-height: 1.8;
+                }
+                .second-p{
+                    font-family: Roboto;
+                    font-style: normal;
+                    text-transform: uppercase;
+                    span{
+                        font-weight: bolder;
+                    }
+                }
+            
+            }
+        }
+    }
+
+}
+
+</style>
+<body>
+    <header>
+        <div class="container">
+            <a href="">
+                <img src="https://ld-wp.template-help.com/wordpress_free/23520/wp-content/themes/workylite/assets/images/logo.png" class="logo" alt="https://ld-wp.template-help.com/wordpress_free/23520/wp-content/themes/workylite/assets/images/retina-logo.png 2x">
+            </a>
+            <div>
+                <ul>
+                    <li><a href="">HOME</a></li>
+                    <li><a href="">ABOUT</a></li>
+                    <li><a href="">SERVICES</a></li>
+                    <li><a href="">BLOG</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <section class="home-page">
+        <h2>WE BUILD THE FUTURE</h2>
+        <p>Best Ideas - Best Solutions - Best Rsults</p>
+        <button>VIEW MORE</button>
+    </section>
+    <section class="about-company">
+        <div class="container">
+            <div class="about-company-title">
+                <div>
+                    <p>ABOUT COMPANY</p>
+                    <h3>We Create and Turn Into Reality</h3>
+                    <hr>
+                </div>
+            </div>
+            <div class="about-company-desc">
+                <div>
+                    <p style="font-weight: 500;">We apply innovative design solutions to enhance people’s residential wellbeing and to help workplaces succeed! All our team collaborates with our clients!</p>
+                    <p>All our team collaborates with our clients, across all of our 3 offices, which are located throughout the US. Our mission is to implement the outstanding design ideas and solutions for any project we’re working on… During that process we carefully combine client’s guidelines, technical possibilities, as well as the environmental issues. Engineering and interior design solutions that we deliver are usually born after a collaborative process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="examples">
+        <div class="container img-animate-1">
+            <div>
+                <a href="">ARCHITECTURE</a>
+            </div>
+            <div>
+                <a href="">ENGINEERING</a>
+            </div>
+            <div>
+                <a href="">INTERIOR DESIGN</a>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials-advantages">
+        <div class="advantages">
+        </div>
+        <div class="container">
+            <div>
+                <h4>ADVANTAGES</h4>
+                <h2>WORKING ON <br> EXCLUSIVE PROJECTS</h2>
+                <hr>
+                <p>Designing sustainable, high-performance buildings requires an integration of architectural and engineered systems into a balanced design of sustainability and cost-effectiveness. Archus merges these practices with the unique requirements and guidelines necessary for advanced technology facilities.</p>
+                <button>VIEW MORE</button>
+            </div>
+        </div>
+        <div class="testimonials">
+            <div>
+                <p>,,</p>
+                <p id="testimonials-text">TESTIMONIALS</p>
+                <div>
+                    <h3>WHAT OUR <br> CLIENTS SAY</h3>
+                    <hr>
+                    <p>It is not every construction company that can build a building from ground up and complete 80,000 sq. ft. of first class office improvement space in 13 months.</p>
+                    <p class="second-p"><span>Kent</span>, posted on Everywhere</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <script>
+        const elements = document.querySelectorAll('.img-animate-1 div');
+        const elements_2 = document.querySelectorAll('.about-company-title p,h3,hr');
+        console.log(elements_2);
+
+        const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target); // rulează o singură dată
+            }
+        });
+        }, { threshold: 0.3 }); // 30% vizibilitate
+
+        elements.forEach(el => observer.observe(el));
+        elements_2.forEach(el => observer.observe(el));
+
+
+        
+
+
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+@keyframes hr-anime{
+    0%{
+        background: transparent;
+        margin-left: 100%;
+    }
+    100%{
+        margin-left: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes h3-anime{
+    0%{
+        opacity: 0;
+        transform: translate(-200px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
+
+@keyframes p-anime{
+    0%{
+        opacity: 0;
+        transform: translate(80%);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
+
+@keyframes img-1{
+    0%{
+        transform: translate(-500px);
+        opacity: 0;
+    }   
+    100%{
+        transform: translate(0px);
+        opacity: 1;
+    }
+    
+}
+@keyframes img-2{
+    0%{
+        transform: translateY(-500px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+
+}
+@keyframes img-3{
+    0%{
+        transform: translate(500px);
+        opacity: 0;
+    }
+    100%{
+        transform: translate(0px);
+        opacity: 1;
+    }
+
+}
