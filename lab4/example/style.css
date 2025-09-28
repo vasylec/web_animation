@@ -1,0 +1,58 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  
+}
+
+body{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background-color: transparent;
+  width: 500px;
+  height: 600px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+}
+img{
+  width: 100px;
+  height: 100px;
+}
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .inner {
+  transform: rotateX(180deg) skew(180deg) ;
+  
+  /* transform:; */
+}
+
+.face, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.face {
+  background-color: green;
+  color: black;
+}
+
+.back {
+  background-color: blue;
+  color: black;
+  transform: rotateX(180deg);
+}

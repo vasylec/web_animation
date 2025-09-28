@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+    
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        overflow-x: hidden;
+    }
+    header{
+        background-color: #3b3d42;
+    }
+    hr{
+        height: 5px;
+        width: 100px;
+        border: none;
+        background-color: white;
+    }
+    header>div{
+        height: 90px;
+        font-family: Roboto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        ul{
+            display: flex;
+            list-style: none;
+            font-size: 20px;
+
+            gap: 20px;
+            
+            a:hover{
+                color: #f7992b;
+                
+            }
+            a{
+                color: white;
+                text-decoration: none;  
+                
+                transition: 0.3s ease-in-out;
+            }
+        }
+    }
+
+
+
+    .container{
+        width: 80vw;
+        margin: 0 auto;
+    }
+</style>
+<body>
+    <header>
+        <div class="container">
+            <a href="">
+                <img src="https://ld-wp.template-help.com/wordpress_free/23520/wp-content/themes/workylite/assets/images/logo.png" class="logo" alt="https://ld-wp.template-help.com/wordpress_free/23520/wp-content/themes/workylite/assets/images/retina-logo.png 2x">
+            </a>
+            <div>
+                <ul>
+                    <li><a href="index.html" >HOME</a></li>
+                    <li><a href="about.html" >ABOUT</a></li>
+                    <li><a href="services.html" style="color: #f7992b;">SERVICES </a></li>
+                    <li><a href="blog.html">BLOG</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+</body>
+</html>

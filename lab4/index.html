@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip-card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+  *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  
+}
+
+body{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.card {
+  background-color: transparent;
+  width: 500px;
+  height: 600px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+}
+img{
+  height: 300px;
+}
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+
+
+.face, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.face {
+  background-color: black;
+  color: black;
+  z-index: 2;
+
+  transition: transform 0.8s ease;
+    
+}
+
+.card:hover .face1{
+  transform: translateY(-100px);
+}
+
+.card:hover .back1{
+    transform: translateY(-100px);
+}
+
+
+
+
+
+.back {
+  z-index: 1;
+  background-color:bisque;
+  color: black;
+  /* transform: rotateY(180deg); */
+  
+  justify-content: space-around;
+}
+
+.back:hover{
+    cursor: pointer;
+}
+
+
+.back1{
+    transition:transform 0.8s ease;
+}
+.back1:hover{
+    transform: translateY(-100px);
+}
+
+/* .back.hover-enabled:hover{
+    transform: translateY(-100px);
+} */
+
+
+@keyframes f {
+    0%{
+        /* transform: translateY(0px); */
+        transform: translateY(-100px);
+        z-index: 2;
+    }
+    50%{
+        transform: translateX(-500px);
+        z-index: 1;
+    }
+    100%{
+        /* transform: rotateY(60deg); */
+        transform: translateX(0px);
+        z-index: 1;
+        transform: translateY(0px);
+
+    }
+}
+
+@keyframes b{
+    0%{
+        z-index: 1;
+        transform: translateY(-100px);
+        
+    }
+    50%{
+        transform: translateX(500px);
+        z-index: 2;
+        
+    }
+    to{
+        z-index: 2;
+        transform: translateX(0px);
+        cursor:default;
+        transform: translateY(-100px);
+    }
+}
+
+@keyframes b1{
+    from{
+        z-index: 2;
+        transform: translateY(-100px);
+    }
+    50%{
+        transform: translateX(500px);
+        z-index: 1;
+        
+    }
+    100%{
+        transform: translateX(0px);
+        z-index: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes f1{
+    0%{
+        z-index: 1;
+        transform: translateY(-100px);
+
+    }
+    50%{
+        transform: translateX(-500px);
+        z-index: 2;
+
+    }
+    to{
+        transform: translateX(0px);
+        z-index: 2;
+        transform: translateY(-100px);
+    }
+}
+
+
+
+
+.card2 {
+  background-color: transparent;
+  width: 200px;
+  height: 300px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+}
+img.img2{
+  width: 100px;
+  height: 100px;
+}
+.inner2 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card2:hover .inner2 {
+  transform: rotateX(180deg);
+  
+  /* transform:; */
+}
+
+.face2, .back2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.face2 {
+  background-color: green;
+  color: black;
+}
+
+.back2 {
+  background-color: blue;
+  color: black;
+  transform: rotateX(180deg);
+}
+</style>
+<body>
+    <h1>Hover card and click on 'SWITCH'</h1>
+    
+    <div class="card">
+        <div class="inner">
+          <div class="face face1">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvzTAz0n_p5GyzLkmRP0JZ-r_Cd0dEfUmbjw&s" alt="cat">
+            <h2 style="color: white; transform: translateY(20px);">SWITCH</h2>
+        </div>
+          <div class="back" onclick="action()">
+              <div>
+                  <h1>HI!</h1>
+                  <h2>I tried my best</h2>
+            </div>
+            <p>Cozma Vasile p-2241</p>
+            <h2 style="transform: translateY(30px);">SWITCH</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="card2">
+        <div class="inner2">
+          <div class="face2">
+            <img class="img2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvzTAz0n_p5GyzLkmRP0JZ-r_Cd0dEfUmbjw&s" alt="cat">
+          </div>
+          <div class="back2">
+            <div>
+                <h1>HI!</h1>
+                <h2>I tried my best</h2>
+            </div>
+            <p>Cozma Vasile p-2241</p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+          
+            
+        
+          const back = document.querySelector('.back');
+          const face = document.querySelector('.face');
+
+
+          
+        
+
+
+
+          back.addEventListener('click', ()=>{
+
+            const faceZ = parseInt(window.getComputedStyle(face).zIndex);
+
+            if(faceZ === 2){
+
+                const element = document.querySelector('.card');
+
+                setInterval(() => {
+                    if(element.matches(':hover')){
+                        
+                    } else {
+                        
+                    }
+                }, 10);
+
+                face.style.animation = 'f 0.8s ease-in-out forwards';
+                back.style.animation = 'b 0.8s ease-in-out forwards';
+
+                face.addEventListener('animationend', () => {
+                    face.style.animation = 'none';
+                    back.style.animation = 'none';
+
+                    
+                   
+                    
+                    face.classList.remove('face1');
+                    back.classList.add('back1');
+                    // document.querySelector('.face h2').style.color = 'white';
+                    // document.querySelector('.back h2').style.color = 'black';
+                }, { once: true });
+    
+                setTimeout(() => {
+                }, 1000); 
+                
+                back.style.zIndex = '2';
+                face.style.zIndex = '1';
+                back.style.cursor = 'default';
+    
+                
+    
+                face.style.cursor = 'pointer';
+
+                
+            }
+        
+          })
+        
+          face.addEventListener('click', ()=>{
+            
+            if(face.style.zIndex == '1'){
+
+                face.style.animation = 'f1 0.8s ease-in-out forwards';
+                back.style.animation = 'b1 0.8s ease-in-out forwards';
+                setTimeout(() => {
+                    face.style.animation = 'none';
+                    back.style.animation = 'none';
+
+                    // document.querySelector('.face h2').style.color = 'black';
+                    // document.querySelector('.back h2').style.color = 'bisque';
+                }, 1000); 
+                back.style.zIndex = '1';
+                face.style.zIndex = '2';
+                face.style.cursor = 'default';
+    
+                back.classList.remove('back1');
+                face.classList.add('face1');
+
+                back.style.cursor = 'pointer';
+            }
+
+            
+          });
+            
+
+            
+        
+        
+        
+      </script>
+</body>
+</html>

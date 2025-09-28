@@ -66,7 +66,7 @@
     width: 100%;
     background-image: 
         linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .6)),
-        url(19566.jpg);
+        url(dependencies/19566.jpg);
     background-size: cover;
     background-position: center;
 }
@@ -96,7 +96,7 @@ section.home-page{
         padding: 18px 38px 18px 47px;
         background-color: #f7992b;
         font-family: Didact Gothic;
-        border: 0px;
+        border: 1px solid #f7992b;
         letter-spacing: 5px;
         font-size: 24px;
         color: white;
@@ -281,11 +281,9 @@ section.testimonials-advantages{
         align-items: center;
         height: 800px;
         div{
-            /* height: 100%; */
-            /* background-color: red; */
             transform: translateY(340px) translateX(-200px);
             width: 40%;
-            /* background-color: red; */
+
             padding-left: 5%;
 
             color: white;
@@ -347,11 +345,24 @@ section.testimonials-advantages{
         background-color: black;
         position: absolute;
         z-index: -2;
-        transform: translateY(250px);
+        transform: translateY(250px) scale(0.05);
+        opacity: 0;
 
         
 
+
+        >.container{
+            transform: translateY(-250px);
+        }
+
+        
     }
+
+    .advantages.show{
+        animation: advantages 1.5s ease forwards;
+    }
+
+    
     .testimonials{
         height: 1090px;
         width: 50%;
@@ -424,10 +435,380 @@ section.testimonials-advantages{
             
             }
         }
+    
+    
+    
+        transform: scale(0.05);
+        opacity: 0;
+    
+    }
+
+
+    .testimonials.show{
+        animation: testimonials 1.5s ease forwards;
     }
 
 }
 
+section.portfolio{
+    margin-top: 500px;
+    height: 1650px;
+
+    .portfolio-text{
+        height: 320px;
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+        font-family: Oswald;
+        
+       
+        .container{
+            display: flex;
+
+        }
+        .portfolio-title{
+            width: 40%;
+            height: 70%;
+
+
+            /* background-color: red; */
+            >div{
+                gap: 30px;
+                height: 70%;
+
+                width: 70%;
+                margin: 0 auto;
+
+                h2{
+                    font-size: 48px;
+                }
+
+                >div{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    height: 100%;
+                    gap: 30px;
+                }
+
+                hr{
+                    background-color: #f7992b;
+                    animation: hr 1s ease-in-out infinite alternate;
+                }
+
+
+            }
+        }
+        .portfolio-desc{
+            height: 70%;
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            
+            margin: auto 0;
+            p{
+                
+                line-height: 35px;
+                width: 80%;
+                font-family: Montserrat;
+                font-size: 18px;
+            }
+        }
+    }
+    .portfolio-photo{
+        /* background-color: red; */
+        height: 1400px;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        
+        
+        .container{
+            
+            width: 100%;
+            margin: 0 auto;
+           
+            
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            
+            place-items: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            
+            row-gap: 30px;
+
+            
+            div{
+                
+                
+                flex-shrink: 0;
+                width: 27vw;
+                height: 27vw;
+                background-color: blue;
+
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+
+                transition: 0.5s ease;
+
+                /* transform: scale(0.1); */
+            }
+            div:hover{
+                transform:scale(1.08);
+                
+                /* border: 10px solid rgb(145, 145, 145); */
+            }
+            div:nth-of-type(1){
+                opacity: 0;
+                background-image: url(dependencies/gallery-1.jpg);
+            }
+            div:nth-of-type(1).show{
+                animation: box1-2 1.5s ease-in-out 0s 1 forwards;
+            }
+            div:nth-of-type(2){
+                opacity: 0;
+                background-image: url(dependencies/gallery-2.jpg);
+            }
+            div:nth-of-type(2).show{
+                animation: box2 1.5s ease-in-out forwards;
+            }
+            div:nth-of-type(3){
+                opacity: 0;
+                transform: translateX(5);
+                background-image: url(dependencies/gallery-3.jpg);
+            }
+            div:nth-of-type(3).show{
+                animation: box3-6 1.5s ease-in-out forwards;
+            }
+            div:nth-of-type(4){
+                opacity: 0;
+                background-image: url(dependencies/gallery-4.jpg);
+            }
+            div:nth-of-type(4).show{
+                animation: box1-2 1.5s ease-in-out 0s 1 forwards;
+            }
+            div:nth-of-type(5){
+                opacity: 0;
+                background-image: url(dependencies/gallery-5.jpg);
+            }
+            div:nth-of-type(5).show{
+                animation: box5 1.5s ease-in-out forwards;
+            }   
+            div:nth-of-type(6){
+                opacity: 0;
+                background-image: url(dependencies/gallery-6.jpg);
+            }
+            div:nth-of-type(6).show{
+                animation: box3-6 1.5s ease-in-out forwards;
+            }
+
+           
+        }
+
+        button{
+            margin: 0 auto;
+            padding: 20px 40px;
+            letter-spacing: 10px;
+            font-size: 18px;
+            font-family: Oswald;
+            font-weight: bold;
+            transform: translateY(-100px);
+
+            background-color: transparent;
+            color: #f7992b;
+            border: 2px solid #f7992b;
+            transition: 0.3s ease-in-out;
+        }
+
+        button:hover{
+            cursor: pointer;
+            background-color: #f7992b;
+            color: white;
+
+        }
+        
+        
+        
+    }
+}
+
+section.contact{
+    margin-bottom: 100px;
+    height: 500px;
+
+    .container{
+
+        display: flex;
+        flex-wrap: nowrap;
+
+
+        gap: 50px;
+
+        >div{
+            height: auto;
+            
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            
+            
+            div:nth-of-type(1){
+                height: 150px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            div:nth-of-type(2){
+                height: 250px;
+                /* background-color: blue; */
+                display:  flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+            }
+
+
+
+            div>p{
+                font-size: 16px;
+                font-weight: 300;
+            }
+            div span{
+                color: #f7992b;
+            }
+            p{
+                font-family: Oswald;
+                font-size: 14px;
+            }
+            h4{
+                font-family: Oswald;
+                font-size: 36px;
+                width: 400px;
+            }
+            hr{
+                background-color: #f7992b;
+            }
+        }
+
+        div:nth-of-type(1){
+            width: 40%;
+        }
+        div:nth-of-type(2){
+            width: 60%;
+
+            input, textarea{
+                border-radius: 5px;
+                border: 1px solid gray;
+            }
+
+            input{
+                height: 30px;
+                padding: 10px;
+                
+            }
+            textarea{
+                padding: 10px;
+            }
+            button{
+                /* width: 100px; */
+                margin: 0 auto;
+                padding: 10px 20px;
+                border-radius: 8px;
+                border: none;
+                background-color: #f7992b;
+                color: white;
+                font-family: Roboto;
+                font-weight: 600;
+                transition: 0.5s ease;
+            }
+            button:hover{
+                cursor: pointer;
+                background-color: #ffb867;
+            }
+        }
+    }
+
+}
+
+@keyframes testimonials{
+    from{
+        opacity: 0;
+        transform: scale(0.05);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes advantages{
+    from{
+        opacity: 0;
+        transform: scale(0.05) translateY(250px);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1) translateY(250px);
+    }
+}
+
+@keyframes hr{
+    from{
+        transform: translateX(0px);
+    }
+    to{
+        transform: translateX(200px);
+
+    }
+}
+
+@keyframes box1-2{
+    0% {
+        opacity: 0;
+        transform: translateX(-50vw);
+    }
+    100% {
+        opacity: 1;
+      transform: translateX(0vw);
+    }
+}
+
+@keyframes box3-6{
+    from{
+        opacity: 0;
+        transform: translateX(50vw);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes box2{
+    from{
+        opacity: 0;
+        transform: translateY(-50vh);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0vh);
+    }
+}
+
+@keyframes box5{
+    from{
+        opacity: 0;
+        transform: translateY(50vh);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0vh);
+    }
+}
 </style>
 <body>
     <header>
@@ -437,10 +818,10 @@ section.testimonials-advantages{
             </a>
             <div>
                 <ul>
-                    <li><a href="">HOME</a></li>
-                    <li><a href="">ABOUT</a></li>
-                    <li><a href="">SERVICES</a></li>
-                    <li><a href="">BLOG</a></li>
+                    <li><a href="index.html" style="color: #f7992b;">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="services.html">SERVICES</a></li>
+                    <li><a href="blog.html">BLOG</a></li>
                 </ul>
             </div>
         </div>
@@ -482,14 +863,14 @@ section.testimonials-advantages{
     </section>
     <section class="testimonials-advantages">
         <div class="advantages">
-        </div>
-        <div class="container">
-            <div>
-                <h4>ADVANTAGES</h4>
-                <h2>WORKING ON <br> EXCLUSIVE PROJECTS</h2>
-                <hr>
-                <p>Designing sustainable, high-performance buildings requires an integration of architectural and engineered systems into a balanced design of sustainability and cost-effectiveness. Archus merges these practices with the unique requirements and guidelines necessary for advanced technology facilities.</p>
-                <button>VIEW MORE</button>
+            <div class="container">
+                <div>
+                    <h4>ADVANTAGES</h4>
+                    <h2>WORKING ON <br> EXCLUSIVE PROJECTS</h2>
+                    <hr>
+                    <p>Designing sustainable, high-performance buildings requires an integration of architectural and engineered systems into a balanced design of sustainability and cost-effectiveness. Archus merges these practices with the unique requirements and guidelines necessary for advanced technology facilities.</p>
+                    <button>VIEW MORE</button>
+                </div>
             </div>
         </div>
         <div class="testimonials">
@@ -506,13 +887,73 @@ section.testimonials-advantages{
         </div>
 
     </section>
+    <section class="portfolio">
+        <div class="portfolio-text">
+            <div class="container">
+                <div class="portfolio-title">
+                    
+                        <div>
+                            <div>
+                                <p>PORTFOLIO</p>
+                                <h2>OUR LATEST <br> PROJECTS</h2>
+                                <hr>
+                            </div>
+                        </div>
+                        
+                </div>
+                    
+                <div class="portfolio-desc">
+                    <p>We specialize in author’s projects which represent your individuality. Our award-winning designers know how to create a perfect space for your. We stand for durable materials, qualitative work and innovative technologies. Enjoy our unique architectural solution and design projects! Archivolt.</p>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-photo">
+            <div class="container">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <button>VIEW MORE</button>
+        </div>
+    </section>
+    <section class="contact">
+        <div class="container">
+            <div>
+                <div>
+                    <p>LET'S GET IN TOUCH</p>
+                    <h4>CONTACT DETAILS</h4>
+                    <hr>
+                </div>
+                <div>
+                    <p>Phone: <span>(555)123-4567</span></p>
+                    <p>E-mail: <span>info@demonik.org</span></p>
+                    <p>Adress: Alexandria, 32 Washington str 22330</p>
+                    <p>Opening hours:</p>
+                    <p>Monday - Tuesday 10:00 - 23:00</p>
+                    <p>Friday - Sunday 10:00 - 19:00</p>
+                </div>
+            </div>
+            <div>
+                <input type="text" name="" id="" placeholder="Your Name">
+                <input type="text" name="" id="" placeholder="Your E-mail">
+                <textarea name="" id="" rows="20" placeholder="Your Message"></textarea>
+                <button>SEND</button>
+            </div>
+        </div>
+    </section>
 
 
 
     <script>
         const elements = document.querySelectorAll('.img-animate-1 div');
         const elements_2 = document.querySelectorAll('.about-company-title p,h3,hr');
-        console.log(elements_2);
+        const element_3 = document.querySelector('section.testimonials-advantages .testimonials')
+        const element_4 = document.querySelector('.advantages');
+        const elements_5 = document.querySelectorAll('.portfolio-photo .container div');
+        
 
         const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -525,6 +966,9 @@ section.testimonials-advantages{
 
         elements.forEach(el => observer.observe(el));
         elements_2.forEach(el => observer.observe(el));
+        observer.observe(element_3);
+        observer.observe(element_4);
+        elements_5.forEach(el => observer.observe(el));
 
 
         
