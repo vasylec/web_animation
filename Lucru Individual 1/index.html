@@ -58,7 +58,7 @@
 
 
     .container{
-        width: 80vw;
+        width: 1400px;
         margin: 0 auto;
     }
 .home-page {
@@ -639,6 +639,7 @@ section.portfolio{
 section.contact{
     margin-bottom: 100px;
     height: 500px;
+    
 
     .container{
 
@@ -703,6 +704,7 @@ section.contact{
             input, textarea{
                 border-radius: 5px;
                 border: 1px solid gray;
+                font-family: Roboto;
             }
 
             input{
@@ -737,7 +739,7 @@ section.contact{
 @keyframes testimonials{
     from{
         opacity: 0;
-        transform: scale(0.05);
+        transform: scale(0.5);
     }
     to{
         opacity: 1;
@@ -748,7 +750,7 @@ section.contact{
 @keyframes advantages{
     from{
         opacity: 0;
-        transform: scale(0.05) translateY(250px);
+        transform: scale(0.5) translateY(250px);
     }
     to{
         opacity: 1;
@@ -962,18 +964,13 @@ section.contact{
             observer.unobserve(entry.target); // rulează o singură dată
             }
         });
-        }, { threshold: 0.3 }); // 30% vizibilitate
+        }, { threshold: 0 }); // 30% vizibilitate
 
         elements.forEach(el => observer.observe(el));
         elements_2.forEach(el => observer.observe(el));
         observer.observe(element_3);
         observer.observe(element_4);
         elements_5.forEach(el => observer.observe(el));
-
-
-        
-
-
     </script>
 
 

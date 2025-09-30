@@ -21,6 +21,9 @@
     }
     header{
         background-color: #3b3d42;
+        /* background-color: blue; */
+        height: 100px;
+        
     }
     hr{
         height: 5px;
@@ -28,9 +31,31 @@
         border: none;
         background-color: white;
     }
+    p{
+        font-size: 20px;
+        /* margin-bottom: 20px; */
+        font-family: Montserrat;
+    }
+    h2{
+        font-size: 50px;
+        line-height: 1.2;
+        font-family: Oswald;
+        /* margin-bottom: 20px; */
+    }
+    h3{
+        font-size: 32px;
+        font-family: Oswald;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    hr{
+        background-color: #f7992b;
+    }
     header>div{
+        
         height: 90px;
         font-family: Roboto;
+        
 
         display: flex;
         justify-content: space-between;
@@ -55,13 +80,365 @@
             }
         }
     }
-
-
-
     .container{
-        width: 80vw;
+        width: 1400px;
         margin: 0 auto;
     }
+
+    section.company{
+        /* margin-top: 250px; */
+        /* background-color: red; */
+        
+
+        height: 1000px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        div:nth-of-type(1){
+            color: black;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 300px;
+            justify-content: space-around;
+            width: 30%;
+
+            p{
+                font-size: 20px;
+                /* margin-bottom: 20px; */
+            }
+            h2{
+                font-size: 50px;
+                line-height: 1.2;
+                /* margin-bottom: 20px; */
+            }
+            hr{
+                background-color: #f7992b;
+            }
+        }
+        div:nth-of-type(2){
+            
+            margin-top: 150px;
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            /* background-color: blue; */
+            align-items: center;
+            height: 850px;
+            gap: 20px;
+            img{
+                width: 80%;
+            }
+            h4{
+                font-family: 'Oswald', sans-serif;
+                font-size: 20px;
+                width: 80%;
+            }
+            p{
+                width: 80%;
+                font-family: 'Didact Gothic', sans-serif;
+                font-size: 18px;
+                line-height: 1.5;
+            }
+        }
+    }
+
+
+    .services-milestones{
+        margin-top: 300px;
+        height: 1000px;
+
+        >div{
+            height: 1000px;
+            position: absolute;
+        }
+        >div:nth-of-type(1){
+            width: 70%;
+            background-color: black;
+            transform: translateY(-200px);
+            z-index: 1;
+
+            color: white;
+
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+
+            h3{
+                transition: 0.2s ease-in-out;
+            }
+
+            h3:hover{
+                cursor: pointer;
+                color: #f7992b;
+            }
+
+            >div{
+                transform: translate(-50px);
+                width: 50%;
+                margin: 0 auto;
+                flex-direction: column;
+                height: 600px;
+                justify-content: space-around;
+                align-items: start;
+                padding-top: 100px;
+                padding-bottom: 100px;
+
+
+
+                >div:nth-of-type(2), >div:nth-of-type(3), >div:nth-of-type(4){
+                    height: 0%;
+                    height: 50%;
+                    overflow: hidden;
+                    
+                    animation: missionAnimation 0.3s ease-in forwards;
+                }
+               
+
+
+                h2{
+                    margin-top: 20px;
+                    margin-bottom: 30px;
+                }
+
+            }
+            
+
+            p{
+                font-size: 16px;
+            }
+
+            ul{
+                list-style: circle;
+                font-size: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                margin-top: 40px;
+                transform: translate(20px);
+            }
+
+            li{
+                font-family: Montserrat;
+                font-size: 16px;
+                
+            }
+        }
+        >div:nth-of-type(2){
+            height: 1000px;
+            /* background-color: red; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+            background-image: 
+            linear-gradient(rgba(247, 153, 43, 0.5), rgba(247, 153, 43, .6)),
+            url('https://ld-wp.template-help.com/wordpress_free/23520/wp-content/uploads/2019/04/slide-2.jpg');
+
+            background-size: cover;
+            background-position: center;
+
+            width: 50%;
+            right: 0;
+            /* background-color: #f7992b; */
+            
+            z-index: 2;
+
+            height: 100%;
+
+            color: white;
+            >div{
+                transform: translate(50px);
+
+                width: 70%;
+                margin: 0 auto;
+                flex-direction: column;
+                height: 200px;
+                justify-content: space-around;
+                align-items: center;
+                /* padding-top: 100px; */
+                /* padding-bottom: 100px; */
+
+                h2{
+                    margin-top: 20px;
+                    margin-bottom: 30px;
+                }
+
+                hr{
+                    background-color: white;
+                }
+            }
+
+            div:nth-of-type(2){
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                
+                justify-content: space-between;
+                align-items: center;
+                height: 400px;
+
+                >div{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    height: 80%;
+                    width: 20%;
+
+                    h2{
+                        font-size: 70px;
+                        font-family: Oswald;
+                    }
+                    p{
+                        font-size: 16px;
+                        text-align: center;
+                        font-family: Montserrat;
+                    }
+                }
+            }
+        }
+
+    }
+
+    section.contact{
+    margin-bottom: 100px;
+    height: 500px;
+
+    margin-top: 100px;
+
+    .container{
+
+        display: flex;
+        flex-wrap: nowrap;
+
+
+        gap: 50px;
+
+        >div{
+            height: auto;
+            
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            
+            
+            div:nth-of-type(1){
+                height: 150px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            div:nth-of-type(2){
+                height: 250px;
+                /* background-color: blue; */
+                display:  flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+            }
+
+
+
+            div>p{
+                font-size: 16px;
+                font-weight: 300;
+            }
+            div span{
+                color: #f7992b;
+            }
+            p{
+                font-family: Oswald;
+                font-size: 14px;
+            }
+            h4{
+                font-family: Oswald;
+                font-size: 36px;
+                width: 400px;
+            }
+            hr{
+                background-color: #f7992b;
+            }
+        }
+
+        div:nth-of-type(1){
+            width: 40%;
+        }
+        div:nth-of-type(2){
+            width: 60%;
+
+            input, textarea{
+                border-radius: 5px;
+                border: 1px solid gray;
+                font-family: Roboto;
+            }
+
+            input{
+                height: 30px;
+                padding: 10px;
+                
+            }
+            textarea{
+                padding: 10px;
+            }
+            button{
+                /* width: 100px; */
+                margin: 0 auto;
+                padding: 10px 20px;
+                border-radius: 8px;
+                border: none;
+                background-color: #f7992b;
+                color: white;
+                font-family: Roboto;
+                font-weight: 600;
+                transition: 0.5s ease;
+            }
+            button:hover{
+                cursor: pointer;
+                background-color: #ffb867;
+            }
+        }
+    }
+
+}
+
+    .hidden{
+        display: none;
+    }
+
+    @keyframes missionAnimation2 {
+        0% {
+            overflow: visible;
+            height: 50%;
+        }
+        57%{
+            overflow: hidden;
+        }
+        100% {
+            height: 0%;
+        }
+    }
+
+
+
+    @keyframes missionAnimation {
+        0% {
+            height: 0%;
+            overflow: hidden;
+        }
+        100% {
+            height: 50%;
+        }
+        101% {
+            overflow: visible;
+        }
+    }
+
+    
+
 </style>
 <body>
     <header>
@@ -79,5 +456,367 @@
             </div>
         </div>
     </header>
+
+
+    <section class="container company">
+        <div>
+            <p>ABOUT COMPANY</p>
+            <h2>We Create <br> and Turn Into <br> Reality</h2>
+            <hr>
+        </div>
+        <div>
+            <img src="https://ld-wp.template-help.com/wordpress_free/23520/wp-content/uploads/2019/04/about.jpg" alt="">
+            <h4>We apply innovative design solutions to enhance people’s residential wellbeing and to help workplaces succeed! All our team collaborates with our clients!</h4>
+            <p>All our team collaborates with our clients, across all of our 3 offices, which are located throughout the US. Our mission is to implement the outstanding design ideas and solutions for any project we’re working on… During that process we carefully combine client’s guidelines, technical possibilities, as well as the environmental issues. Engineering and interior design solutions that we deliver are usually born after a collaborative process.</p>
+        </div>
+    </section>
+
+    <section class="services-milestones">
+        <div>
+            <div>
+                <div>
+                    <p>SERVICES</p>
+                    <h2>OUR PHILOSOPHY</h2>
+                    <hr>
+                </div>
+
+                <h3> - OUR MISSION</h3>
+                <div class="">
+                    <p>Designing sustainable, high-performance buildings requires an integration of architectural and engineered systems into a balanced design of sustainability…</p>
+                    <ul class="mission-list">
+                        <li>Based on your project, get only what’s needed</li>
+                        <li>Cost effective, to secure construction process</li>
+                        <li>Premium quality. We always get the best people</li>
+                    </ul>
+                    
+                </div>
+
+                <h3> + OUR VISION</h3>
+                <div class="hidden">
+                    <p>We are here to meet your demand and resolve architecture issues the most beneficial way for you. Our skilled experts are able to resolve complex and unusual cases in the shortest time.</p>   
+                    <ul class="vision-list">
+                        <li>We create and turn into reality</li>
+                        <li>We build long-term relationships</li>
+                        <li>We are passionate about our work</li>
+                    </ul>
+                </div>
+
+                <h3> + OUR VALUES</h3>
+                <div class="hidden">
+                    <p>Through this experience Warmhouse  has acquired a high level of expertise in the design and realisation of high-profile and luxury schemes, always reducing the complexity.</p>   
+
+                    <ul class="vision-list">
+                        <li>Commercial</li>
+                        <li>Education & Campus</li>
+                        <li>Healthcare & Life Sciences</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="milestones">
+            <div>
+                <p>IMPORTANT MILESTONES</p>
+                <h2>WHAT WE <br> ACCOMPLISHED</h2>
+                <hr>
+            </div>
+            <div>
+                <div>
+                    <h2 id="h2-1">0</h2>
+                    <p>FINISHED PROJECTS</p>
+                </div>
+                
+                <div>
+                    <h2 id="h2-2">0</h2>
+                    <p>DESIGN AWARDS</p>
+                </div>
+                
+                <div>
+                    <h2 id="h2-3">0</h2>
+                    <p>YEARS IN INDUSTRY</p>
+                </div>
+                
+                <div>
+                    <h2 id="h2-4">0</h2>
+                    <p>HAPPY CLIENTS</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <div>
+                <div>
+                    <p>LET'S GET IN TOUCH</p>
+                    <h4>CONTACT DETAILS</h4>
+                    <hr>
+                </div>
+                <div>
+                    <p>Phone: <span>(555)123-4567</span></p>
+                    <p>E-mail: <span>info@demonik.org</span></p>
+                    <p>Adress: Alexandria, 32 Washington str 22330</p>
+                    <p>Opening hours:</p>
+                    <p>Monday - Tuesday 10:00 - 23:00</p>
+                    <p>Friday - Sunday 10:00 - 19:00</p>
+                </div>
+            </div>
+            <div>
+                <input type="text" name="" id="" placeholder="Your Name">
+                <input type="text" name="" id="" placeholder="Your E-mail">
+                <textarea name="" id="" rows="20" placeholder="Your Message"></textarea>
+                <button>SEND</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+
+        const mission = document.querySelector('.mission-list');
+        const vision = document.querySelector('.vision-list');
+        const values = document.querySelector('.values-list');
+
+        const missionBtn = document.querySelector('h3:nth-of-type(1)');
+        
+        const visionBtn = document.querySelector('h3:nth-of-type(2)');
+        const valuesBtn = document.querySelector('h3:nth-of-type(3)');
+        
+        const missionDiv = missionBtn.nextElementSibling;
+        const visionDiv = visionBtn.nextElementSibling;
+        const valuesDiv = valuesBtn.nextElementSibling;
+        
+
+
+        let lastButton = 1;
+
+
+        missionBtn.addEventListener('click', () => {
+
+            
+
+            
+            if(lastButton == 2){
+                visionDiv.style.animation = "missionAnimation2 0.3s ease-in forwards";
+                visionDiv.addEventListener('animationend', () => {
+                    visionDiv.classList.add('hidden');
+                    visionDiv.style.animation = "missionAnimation 0.3s ease-in forwards";
+                }, {once: true});
+            }
+            else if(lastButton == 3){
+                valuesDiv.style.animation = "missionAnimation2 0.3s ease-in forwards";
+                valuesDiv.addEventListener('animationend', () => {
+                    valuesDiv.classList.add('hidden');
+                    valuesDiv.style.animation = "missionAnimation 0.3s ease-in forwards";
+                }, {once: true});
+            }
+            
+            
+            
+            
+            missionDiv.classList.remove('hidden');
+            missionDiv.style.animation = "missionAnimation 0.3s ease-in forwards";
+
+            
+            
+            
+            
+            
+            
+            missionBtn.textContent = " - OUR MISSION";
+            visionBtn.textContent = " + OUR VISION";
+            valuesBtn.textContent = " + OUR VALUES";
+
+            lastButton = 1;
+        });
+        
+        visionBtn.addEventListener('click', () => {
+            
+            if(lastButton == 1){
+                missionDiv.style.animation = "missionAnimation2 0.3s ease-in forwards";
+                missionDiv.addEventListener('animationend', () => {
+                    missionDiv.classList.add('hidden');
+                    missionDiv.style.animation = "missionAnimation 0.3s ease-in forwards";
+                }, {once: true});
+            }
+            else if(lastButton == 3){                
+                valuesDiv.style.animation = "missionAnimation2 0.3s ease-in forwards";
+                valuesDiv.addEventListener('animationend', () => {
+                    valuesDiv.classList.add('hidden');
+                    valuesDiv.style.animation = "missionAnimation 0.3s ease-in forwards";
+                }, {once: true});
+            }
+            
+            
+            
+            
+            visionDiv.classList.remove('hidden');
+            visionDiv.style.animation = "missionAnimation 0.3s ease-in forwards";
+            
+            visionBtn.textContent = " - OUR VISION";
+            missionBtn.textContent = " + OUR MISSION";
+            valuesBtn.textContent = " + OUR VALUES";
+
+
+            lastButton = 2;
+        });
+
+        valuesBtn.addEventListener('click', () => {
+            
+            
+            
+            if(lastButton == 1){
+                missionDiv.style.animation = "missionAnimation2 0.3s ease-in forwards";
+                missionDiv.addEventListener('animationend', () => {
+                    missionDiv.classList.add('hidden');
+                    missionDiv.style.animation = "missionAnimation 0.3s ease-in forwards";
+                }, {once: true});
+            }
+            else if(lastButton == 2){                
+                visionDiv.style.animation = "missionAnimation2 0.3s ease-in forwards";
+                visionDiv.addEventListener('animationend', () => {
+                    visionDiv.classList.add('hidden');
+                    visionDiv.style.animation = "missionAnimation 0.3s ease-in forwards";
+                }, {once: true});
+            }
+            
+
+            valuesDiv.classList.remove('hidden');
+            valuesDiv.style.animation = "missionAnimation 0.3s ease-in forwards";
+            
+            
+
+            valuesBtn.textContent = " - OUR VALUES";
+            missionBtn.textContent = " + OUR MISSION";
+            visionBtn.textContent = " + OUR VISION";
+
+            lastButton = 3
+        });
+    </script>
+
+
+    <script>
+        
+
+function animateValue(id, start, end, duration, slowZone = 50, slowDigits = 3) {
+  const obj = document.getElementById(id);
+  let startTimestamp = null;
+
+  // asigurăm valori valide
+  const totalRange = Math.max(0, end - start);
+  slowDigits = Math.max(0, Math.min(slowDigits, totalRange));
+  slowZone = Math.max(0, Math.min(slowZone, totalRange - slowDigits));
+  if (slowZone <= slowDigits) slowZone = slowDigits + 1;
+
+  const fastEnd = end - slowZone;   // punctul unde începe zona "slowZone"
+  const midEnd  = end - slowDigits; // punctul unde încep ultimele slowDigits
+
+  const fastCount  = Math.max(0, fastEnd - start);
+  const midCount   = Math.max(0, midEnd - fastEnd);
+  const ultraCount = Math.max(0, end - midEnd); // = slowDigits
+
+  // ponderi: cât timp alocăm fiecărui număr din fiecare zonă
+  const wf = 1;   // fast = 1 unitate per număr
+  const wm = 4;   // mid = mai lent (ex: 4x timp per număr)
+  const wu = 12;  // ultra = foarte lent (ex: 12x timp per număr)
+
+  const totalWeight = fastCount * wf + midCount * wm + ultraCount * wu || 1;
+
+  // easing-uri folosite în zonele încetinite
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function easeOutQuad(t)  { return 1 - (1 - t) * (1 - t); }
+
+  function step(timestamp) {
+    if (!startTimestamp) startTimestamp = timestamp;
+    let p = (timestamp - startTimestamp) / duration;
+    if (p > 1) p = 1;
+
+    // progresul în "unități de timp ponderate"
+    const weighted = p * totalWeight;
+
+    let current = start;
+
+    // în ce "zonă" suntem?
+    const fastWeightTotal  = fastCount * wf;
+    const midWeightTotal   = midCount * wm;
+    // const ultraWeightTotal = ultraCount * wu; // nu e necesar separat
+
+    if (weighted <= fastWeightTotal) {
+      // suntem în zona rapidă (proporțional)
+      const idx = fastCount === 0 ? 0 : Math.floor(weighted / wf);
+      current = start + Math.min(idx, fastCount);
+    } else if (weighted <= fastWeightTotal + midWeightTotal) {
+      // suntem în zona mid (încetinire) — aplicăm easing
+      const localWeighted = weighted - fastWeightTotal;
+      const norm = midCount === 0 ? 1 : Math.min(localWeighted / (midCount * wm), 1);
+      const eased = easeOutCubic(norm);
+      current = fastEnd + Math.floor(eased * midCount);
+    } else {
+      // suntem în zona ultra-lentă (ultimele slowDigits) — easing mai puternic
+      const localWeighted = weighted - fastWeightTotal - midWeightTotal;
+      const norm = ultraCount === 0 ? 1 : Math.min(localWeighted / (ultraCount * wu), 1);
+      const eased = easeOutQuad(norm);
+      current = midEnd + Math.floor(eased * ultraCount);
+    }
+
+    // siguranță: nu depășim end
+    if (current > end) current = end;
+
+    obj.innerText = current;
+
+    if (p < 1) {
+      window.requestAnimationFrame(step);
+    } else {
+      // la final asigurăm exact valoarea finală
+      obj.innerText = end;
+    }
+  }
+  startTimestamp = null;
+  window.requestAnimationFrame(step);
+}
+
+
+    const element1 = document.querySelector('#h2-1');
+    const element2 = document.querySelector('#h2-2');
+    const element3 = document.querySelector('#h2-3');
+    const element4 = document.querySelector('#h2-4');
+        
+        
+
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            if(entry.target === element1)
+                animateValue("h2-1", 0, 358, 3000);
+            else if(entry.target === element2)
+                animateValue("h2-2", 0, 28, 2000);
+            else if(entry.target === element3)
+                animateValue("h2-3", 0, 18, 2000);
+            else if(entry.target === element4)
+                animateValue("h2-4", 0, 724, 5000);
+            
+
+
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target); // rulează o singură dată
+        }
+    });
+    }, { threshold: 1 }); // 30% vizibilitate
+
+    // elements.forEach(el => observer.observe(el));
+        
+    observer.observe(element1);
+    observer.observe(element2); 
+    observer.observe(element3);
+    observer.observe(element4);
+
+
+    
+    
+    
+    
+    
+    </script>
 </body>
 </html>
+
