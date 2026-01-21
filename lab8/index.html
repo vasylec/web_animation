@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+canvas{
+    background-color: black;
+}
+</style>
+<body>
+    <canvas id="canvas" width="500" height="500">Canvas is not available on this browser</canvas>
+    <script>
+        let canvas, ctx;
+        let angle = 120;
+        let radius = 40;
+        let time = 0;
+        let speed = 0.05;
+        let numSquares = 6;
+        let loading = 0;
+
+        window.onload = function() {
+        canvas = document.getElementById("canvas");
+        ctx = canvas.getContext("2d");
+        requestAnimationFrame(draw);
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        };
+
+        function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let centerX = canvas.width / 2;
+        let centerY = canvas.height / 2;
+
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        let roundness = (Math.sin(time * 0.05) + 1) / 2; 
+        let size = 25 + Math.sin(time * 0.1) * 3;
+
+        for (let i = 0; i < numSquares; i++) {
+            let a = angle + (i * (2 * Math.PI / numSquares));
+            let x = centerX + radius * Math.cos(a);
+            let y = centerY + radius * Math.sin(a);
+
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(a + time * 0.02);
+
+            ctx.fillStyle = ["#ff00aaff", "#00ff0dff", "#0073ffff"][i % 3];
+
+            drawRoundedSquare(ctx, -size / 2, -size / 2, size, roundness * size / 2);
+
+            ctx.restore();
+        }
+
+        ctx.fillStyle = "white";
+        ctx.font = "20px Arial";
+        ctx.textAlign = "center";
+
+        if (time % 60 < 20) dots = ".";
+        else if (time % 60 < 40) dots = "..";
+        else dots = "...";
+
+        ctx.fillText("Loading" + dots, centerX, centerY + 100);
+
+
+
+        angle += speed;
+        time++;
+
+        requestAnimationFrame(draw);
+        }
+
+        function drawRoundedSquare(ctx, x, y, size, radius) {
+        ctx.beginPath();
+        if (radius <= 0) {
+            ctx.rect(x, y, size, size);
+        } else {
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + size - radius, y);
+            ctx.quadraticCurveTo(x + size, y, x + size, y + radius);
+            ctx.lineTo(x + size, y + size - radius);
+            ctx.quadraticCurveTo(x + size, y + size, x + size - radius, y + size);
+            ctx.lineTo(x + radius, y + size);
+            ctx.quadraticCurveTo(x, y + size, x, y + size - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+        }
+        ctx.closePath();
+        ctx.fill();
+        }
+    </script>
+</body>
+</html>

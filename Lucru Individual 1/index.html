@@ -58,7 +58,7 @@
 
 
     .container{
-        width: 1400px;
+        width: 80vw;
         margin: 0 auto;
     }
 .home-page {
@@ -811,6 +811,21 @@ section.contact{
         transform: translateY(0vh);
     }
 }
+
+@keyframes logo_animation{
+    from{
+        transform: translate(-20px);
+    }
+    to{
+        
+        transform: translate(20px);
+    }
+}
+
+.logo{
+    animation: logo_animation 1.5s ease-in-out infinite alternate;
+}
+
 </style>
 <body>
     <header>
@@ -823,7 +838,6 @@ section.contact{
                     <li><a href="index.html" style="color: #f7992b;">HOME</a></li>
                     <li><a href="about.html">ABOUT</a></li>
                     <li><a href="services.html">SERVICES</a></li>
-                    <li><a href="blog.html">BLOG</a></li>
                 </ul>
             </div>
         </div>

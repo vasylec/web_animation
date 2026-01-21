@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+
+        
+    }
+    body{
+        background-color: #6fc9f8;
+        display: flex;
+        justify-content: center;
+
+    }
+    div,hr{
+        background-color: white;
+    }
+
+    hr{
+        position: absolute;
+        height: 1vh;
+        width: 40vw;
+        border: 0px;
+        top: 70vh;
+        margin: 0 auto;
+
+        animation: hr-animation 4s infinite linear forwards;
+    }
+
+    .rectangle{
+        height: 20vh;
+        width: 20vh;
+
+        position: relative;
+        top: 50vh;
+
+        /* transform:rotate(45deg) translateY(-2vh) translateX(-2vw); */
+
+
+        animation: rectangle-animation 4s infinite linear; 
+        animation-fill-mode: forwards;
+        
+    }
+
+    .hide_rect{
+        position: absolute;
+        background-color: #6fc9f8;
+        width: 30vw;
+        height: 20vh;
+        top: 71vh;
+
+        animation: hr-animation 4s infinite linear forwards;
+    }
+
+    html{
+        overflow: hidden;
+    }
+
+    .clouds {
+  height: 20vh;
+  width: 30vw;
+  position: absolute;
+  background-color: transparent;
+
+  top: 10vh;
+  
+  div:nth-of-type(1) {
+  background-color: white;
+  height: 6vh;
+  width: 30vw;
+  border-radius: 50px;
+  }
+
+  div:nth-of-type(2) {
+  position: absolute;
+  top: 3vh;
+  left: 8vw;
+
+  background-color: white;
+  height: 7vh;
+  width: 20vw;
+  border-radius: 50px;
+  }
+
+}
+
+.c1{
+    transform: translateX(-30vw) translateY(20vh) scale(0.8);
+    animation: clouds_1 30s infinite linear forwards;
+}
+
+.c2{
+    transform: translateY(5vh) translateX(100vw);
+    animation: clouds_2 30s 15s infinite linear forwards;
+}
+
+.c3{
+    transform: translateX(70vw) translateY(-10vh) scale(0.5);
+    animation: clouds_3 30s 10s infinite linear forwards;
+
+}
+
+div.particles{
+    overflow: hidden;
+    background-color: #6fc9f8;
+    width: 40vw;
+    height: 20vh;
+    position: absolute;
+    top: 75vh;
+
+    
+    
+    div{
+        opacity: 0;
+        height: 0.7vh;
+        width: 0.7vh;
+    
+        background-color: white;
+
+        position: relative;
+
+        transform: translateX(40vw);
+
+
+        clip-path: polygon(100% 0, 0 50%, 100% 100%);
+        animation: moveLeft linear 10s infinite forwards;
+    }
+    
+    div:nth-of-type(1){
+        animation-delay: 1s;
+    }
+    div:nth-of-type(2){
+        animation-delay: 2s;
+    }
+    div:nth-of-type(3){
+        animation-delay: 3s;
+    }
+    div:nth-of-type(4){
+        animation-delay: 4s;
+    }
+    div:nth-of-type(5){
+        animation-delay: 5s;
+    }
+    div:nth-of-type(6){
+        animation-delay: 6s;
+    }
+    div:nth-of-type(7){
+        animation-delay: 7s;
+    }
+    div:nth-of-type(8){
+        animation-delay: 8s;
+    }
+    div:nth-of-type(9){
+        animation-delay: 9s;
+    }
+    div:nth-of-type(10){
+        animation-delay: 10s;
+    }
+}
+
+@keyframes moveLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(40vw); /* start din dreapta containerului */
+    /* opacity: 1; */
+}
+100% {
+    opacity: 1;
+    transform: translateX(-20vw); /* iese pe stânga */
+    /* opacity: 0.2; */
+  }
+}
+
+
+
+    @keyframes clouds_1{
+        0%{
+            transform: translateX(70vw) translateY(20vh) scale(0.8);
+        }
+        50%{
+            
+            transform: translateX(-30vw) translateY(20vh) scale(0.8);   
+        }
+        100%{
+            transform: translateX(-130vw) translateY(20vh) scale(0.8);
+        }
+    }
+    @keyframes clouds_2{
+        0%{
+            transform: translateY(5vh) translateX(70vw);
+        }
+        50%{
+            
+            transform: translateY(5vh) translateX(-30vw);
+        }
+        100%{
+            transform: translateY(5vh) translateX(-130vw);
+        }
+    }
+    @keyframes clouds_3{
+        0%{
+            transform: translateX(70vw) translateY(-10vh) scale(0.5);
+        }
+        50%{
+            transform: translateX(-30vw) translateY(-10vh) scale(0.5);
+            
+        }
+        100%{
+            transform: translateX(-130vw) translateY(-10vh) scale(0.5);
+
+        }
+    }
+
+
+
+    
+    @keyframes rectangle-animation{
+        0%{
+            transform:rotate(0deg) translateY(0vh) translateX(0vw);
+        }
+        12.5%{
+            transform:rotate(45deg) translateY(-3.55vh) translateX(0vw);
+        }
+        25%{
+            transform:rotate(90deg) translateY(0vh) translateX(0vw);
+        }
+        37.5%{
+            transform:rotate(135deg) translateY(-2.5vh) translateX(-2.5vw);
+        }
+        50%{
+            transform:rotate(180deg) translateY(0) translateX(0);
+        }
+        62.5%{
+            transform:rotate(225deg) translateY(5vh) translateX(0vw);
+        }
+        75%{
+            transform:rotate(270deg) translateY(0vh) translateX(0vw);
+            
+        }
+        87.5%{
+            transform:rotate(315deg) translateY(2.5vh) translateX(2.5vw);
+            
+        }
+        100%{
+            transform:rotate(360deg) translateY(0vh) translateX(0vw);
+            
+
+        }
+    }
+
+
+    @keyframes hr-animation_{
+        0%{
+            /* transform:rotate(0deg) translateY(0vh) translateX(0vw); */
+        }
+        20%{
+            /* transform:rotate(45deg) translateY(-3.55vh) translateX(0vw); */
+            transform: translateY(0vw);
+        }
+        25%{
+            transform: translateY(0.5vw);
+            /* transform:rotate(90deg) translateY(0vh) translateX(0vw); */
+        }
+        37.5%{
+            transform: translateY(0vw);
+            /* transform:rotate(135deg) translateY(-2.5vh) translateX(-2.5vw); */
+        }
+        50%{
+            /* transform:rotate(180deg) translateY(0) translateX(0); */
+        }
+        62.5%{
+            /* transform:rotate(225deg) translateY(5vh) translateX(0vw); */
+        }
+        75%{
+            /* transform:rotate(270deg) translateY(0vh) translateX(0vw); */
+            
+        }
+        87.5%{
+            /* transform:rotate(315deg) translateY(2.5vh) translateX(2.5vw); */
+            
+        }
+        100%{
+            /* transform:rotate(360deg) translateY(0vh) translateX(0vw); */
+        }
+    }
+
+</style>
+<body>  
+
+    <div class="clouds c1">
+        <div></div>
+        <div></div>
+    </div>
+    <div class="clouds c2">
+        <div></div>
+        <div></div>
+    </div>
+    <div class="clouds c3">
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="rectangle"></div>
+    <hr>
+    <div class="hide_rect"></div>
+
+
+    <div class="particles">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <script>
+document.querySelectorAll(".particles div").forEach(particle => {
+  // random între 0 și dimensiunile containerului
+  const parent = particle.parentElement;
+  const maxY = parent.clientHeight - particle.clientHeight;
+
+  const randY = Math.random() * maxY;
+
+  particle.style.top = randY + "px";
+});
+</script>
+</body>
+</html>

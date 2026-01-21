@@ -81,9 +81,22 @@
         }
     }
     .container{
-        width: 1400px;
+        width: 80vw;
         margin: 0 auto;
     }
+    @keyframes logo_animation{
+    from{
+        transform: translate(-20px);
+    }
+    to{
+        
+        transform: translate(20px);
+    }
+}
+
+.logo{
+    animation: logo_animation 1.5s ease-in-out infinite alternate;
+}
 
     section.company{
         /* margin-top: 250px; */
@@ -451,7 +464,6 @@
                     <li><a href="index.html" >HOME</a></li>
                     <li><a href="about.html" style="color: #f7992b;">ABOUT</a></li>
                     <li><a href="services.html">SERVICES</a></li>
-                    <li><a href="blog.html">BLOG</a></li>
                 </ul>
             </div>
         </div>
@@ -571,6 +583,8 @@
     </section>
 
     <script>
+
+        alert("#################################################\nDon't Forget to try clicking on OUR MISSION / OUR VISSION / OUR VALUES\n---------------------------------------------------------------");
 
 
         const mission = document.querySelector('.mission-list');
@@ -702,27 +716,25 @@ function animateValue(id, start, end, duration, slowZone = 50, slowDigits = 3) {
   const obj = document.getElementById(id);
   let startTimestamp = null;
 
-  // asigurăm valori valide
   const totalRange = Math.max(0, end - start);
   slowDigits = Math.max(0, Math.min(slowDigits, totalRange));
   slowZone = Math.max(0, Math.min(slowZone, totalRange - slowDigits));
   if (slowZone <= slowDigits) slowZone = slowDigits + 1;
 
-  const fastEnd = end - slowZone;   // punctul unde începe zona "slowZone"
-  const midEnd  = end - slowDigits; // punctul unde încep ultimele slowDigits
+  const fastEnd = end - slowZone;   
+  const midEnd  = end - slowDigits; 
 
   const fastCount  = Math.max(0, fastEnd - start);
   const midCount   = Math.max(0, midEnd - fastEnd);
-  const ultraCount = Math.max(0, end - midEnd); // = slowDigits
+  const ultraCount = Math.max(0, end - midEnd); 
 
-  // ponderi: cât timp alocăm fiecărui număr din fiecare zonă
-  const wf = 1;   // fast = 1 unitate per număr
-  const wm = 4;   // mid = mai lent (ex: 4x timp per număr)
-  const wu = 12;  // ultra = foarte lent (ex: 12x timp per număr)
+  
+  const wf = 1;   
+  const wm = 4;   
+  const wu = 12;  
 
   const totalWeight = fastCount * wf + midCount * wm + ultraCount * wu || 1;
 
-  // easing-uri folosite în zonele încetinite
   function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
   function easeOutQuad(t)  { return 1 - (1 - t) * (1 - t); }
 
@@ -731,35 +743,28 @@ function animateValue(id, start, end, duration, slowZone = 50, slowDigits = 3) {
     let p = (timestamp - startTimestamp) / duration;
     if (p > 1) p = 1;
 
-    // progresul în "unități de timp ponderate"
     const weighted = p * totalWeight;
 
     let current = start;
 
-    // în ce "zonă" suntem?
     const fastWeightTotal  = fastCount * wf;
     const midWeightTotal   = midCount * wm;
-    // const ultraWeightTotal = ultraCount * wu; // nu e necesar separat
 
     if (weighted <= fastWeightTotal) {
-      // suntem în zona rapidă (proporțional)
       const idx = fastCount === 0 ? 0 : Math.floor(weighted / wf);
       current = start + Math.min(idx, fastCount);
     } else if (weighted <= fastWeightTotal + midWeightTotal) {
-      // suntem în zona mid (încetinire) — aplicăm easing
       const localWeighted = weighted - fastWeightTotal;
       const norm = midCount === 0 ? 1 : Math.min(localWeighted / (midCount * wm), 1);
       const eased = easeOutCubic(norm);
       current = fastEnd + Math.floor(eased * midCount);
     } else {
-      // suntem în zona ultra-lentă (ultimele slowDigits) — easing mai puternic
       const localWeighted = weighted - fastWeightTotal - midWeightTotal;
       const norm = ultraCount === 0 ? 1 : Math.min(localWeighted / (ultraCount * wu), 1);
       const eased = easeOutQuad(norm);
       current = midEnd + Math.floor(eased * ultraCount);
     }
 
-    // siguranță: nu depășim end
     if (current > end) current = end;
 
     obj.innerText = current;
@@ -767,7 +772,6 @@ function animateValue(id, start, end, duration, slowZone = 50, slowDigits = 3) {
     if (p < 1) {
       window.requestAnimationFrame(step);
     } else {
-      // la final asigurăm exact valoarea finală
       obj.innerText = end;
     }
   }
@@ -798,24 +802,16 @@ function animateValue(id, start, end, duration, slowZone = 50, slowDigits = 3) {
 
 
             entry.target.classList.add('show');
-            observer.unobserve(entry.target); // rulează o singură dată
+            observer.unobserve(entry.target); 
         }
     });
-    }, { threshold: 1 }); // 30% vizibilitate
+    }, { threshold: 1 }); 
 
-    // elements.forEach(el => observer.observe(el));
         
     observer.observe(element1);
     observer.observe(element2); 
     observer.observe(element3);
     observer.observe(element4);
-
-
-    
-    
-    
-    
-    
     </script>
 </body>
 </html>

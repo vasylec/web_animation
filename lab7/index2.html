@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;    
+    }
+</style>
+<body>
+    <canvas>The browser doens't support canvas.</canvas>    
+
+
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth - 10;
+        canvas.height = window.innerHeight - 10;
+
+
+        console.log(window.innerHeight);
+        
+
+        ctx.lineWidth = 4;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        ctx.translate(50, 50);
+
+        const shapeWidth = 820;
+        const shapeHeight = 600;
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        
+
+        ctx.translate(centerX - shapeWidth / 2, centerY - shapeHeight / 2);
+        
+        if(window.innerWidth < shapeWidth || window.innerHeight < shapeHeight){
+            alert("Please, make your window larger to at least " + shapeWidth + "x" + shapeHeight + " pixels.");
+            
+        }
+
+
+        function drawPolygon(a,fill){
+            ctx.beginPath(); 
+            ctx.fillStyle = fill;
+            ctx.strokeStyle = 'black'; 
+            for(let i = 0; i < a.length; i+=2){
+                if(i === 0){
+                    ctx.moveTo(a[i], a[i+1]);
+                } else {
+                    ctx.lineTo(a[i], a[i+1]);
+                }
+            }            
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        drawPolygon([5,464,137,378,216,495,115,454,],"#48546c");
+        drawPolygon([137,378,193,363,347,391,216,495],"#434c70");
+        drawPolygon([347,391,525,427,397,495,216,495],"#576185");
+        drawPolygon([397,495,525,427,599,489],"#353c5a");
+        drawPolygon([525,427,663,379,706,410,599,489],"#283751");
+        drawPolygon([347,391,486,351,532,374,663,379,526,426],"#1a2134");
+        drawPolygon([200,295,256,306,254,374,193,363],"black");
+        drawPolygon([254,306,307,316,307,383,254,374],"#d5cac4");
+        drawPolygon([307,316,323,322,490,289,487,351,349,391,307,383],"black");
+        drawPolygon([200,295,266,258,365,218,323,322],"#455475");
+        drawPolygon([365,218,479,257,490,289,323,322],"#172034");
+        drawPolygon([365,218,486,194,500,225,479,257],"#131720");
+        drawPolygon([266,258,365,218,348,80],"#60739d");
+        drawPolygon([348,80,540,2,549,135,505,190,365,218],"#282f47");
+        drawPolygon([540,2,598,112,625,217,549,135],"#252c47");
+
+    </script>
+</body>
+</html>

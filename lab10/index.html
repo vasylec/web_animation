@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html,body { height:100%; }
+    canvas { display:block; background:#eee; }
+
+    #reloadBar {
+        position: fixed;
+        left: 50%;
+        bottom: 40px;
+        transform: translateX(-50%);
+        width: 300px;
+        height: 20px;
+        border: 2px solid black;
+        background: white;
+        display: none;
+        z-index: 1000;
+    }
+    #reloadFill {
+        width: 0%;
+        height: 100%;
+        background: orange;
+    }
+
+    #message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 80px;
+        color: black;
+        display: none;
+        z-index: 1000;
+    }
+
+    #hud {
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        color: #111;
+        z-index: 1000;
+        background: rgba(255,255,255,0.6);
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+</style>
+</head>
+<body>
+
+<canvas></canvas>
+<div id="reloadBar"><div id="reloadFill"></div></div>
+<div id="message"></div>
+<div id="hud">HP: 100<br>Mag: 7/7<br>Total: 21</div>
+
+<script src="script.js"></script>
+</body>
+</html>

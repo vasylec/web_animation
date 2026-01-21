@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;    
+    }
+</style>
+<body>
+    <canvas>The browser doens't support canvas.</canvas>    
+
+
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth - 10;
+        canvas.height = window.innerHeight - 10;
+
+
+        console.log(window.innerHeight);
+        
+
+        ctx.lineWidth = 4;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        ctx.translate(50, 50);
+
+        const shapeWidth = 400;
+        const shapeHeight = 600;
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        ctx.translate(centerX - shapeWidth / 2, centerY - shapeHeight / 2);
+
+        if(window.innerWidth < shapeWidth || window.innerHeight < shapeHeight){
+            alert("Please, make your window larger to at least " + shapeWidth + "x" + shapeHeight + " pixels.");
+        }
+
+
+        function drawPolygon(a,fill){
+            ctx.beginPath(); 
+            ctx.fillStyle = fill;
+            ctx.strokeStyle = 'black'; 
+            for(let i = 0; i < a.length; i+=2){
+                if(i === 0){
+                    ctx.moveTo(a[i], a[i+1]);
+                } else {
+                    ctx.lineTo(a[i], a[i+1]);
+                }
+            }            
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        drawPolygon([81,484,137,385,190,498], "#1d1309");
+        drawPolygon([81,259,137,385,81,484], "#341909");
+        drawPolygon([137,385,194,259,190,498], "#341909");
+        drawPolygon([0,137,81,259,81,484], "#bf1a1a");
+        drawPolygon([190,498,270,137,194,259], "#bf1a1a");
+        drawPolygon([190,498,229,474,319,140,270,137], "#220909");
+        drawPolygon([123,182,147,182,194,259,137,385,81,259], "#44110f");
+        drawPolygon([147,182,148,136,186,135,186,111,270,137,194,259], "#752828");
+        drawPolygon([86,111,85,134,123,135,123,184,81,259,0,137], "#752828");
+        drawPolygon([123,78,147,78,148,111,186,111,187,136,149,136,148,182,123,182,124,135,85,135,86,111,123,110], "#f3c300");
+        drawPolygon([1,137,69,21,124,77,124,110,86,110], "#44110f");
+        drawPolygon([69,21,212,1,147,78,123,78], "#1d1309");
+        drawPolygon([213,2,148,77,148,111,186,112,270,137], "#44110f");
+        drawPolygon([213,1,279,39,319,140,270,137], "#1d1309");
+    </script>
+</body>
+</html>

@@ -1,0 +1,671 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanjiro Breathing Animation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+        *{
+            font-family: Roboto;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+        }
+        div{
+            margin-left: 20px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p><b>Animații adăugate:</b></p>
+        <p>1. Effect de respirație.</p>
+        <p>2. Părul se mișcă ușor.</p>
+        <p>3. Cerceii se mișcă ușor.</p>
+        <p>4. Ochii urmăresc cursorul, iar odată ce cursorul e pe față ochii revin la poziția inițială.</p>
+        <p>5. Apare și dispare zgârâietura de pe față la clickul mouseului.</p>
+        <hr>
+        <p>Cozma Vasile P-2241</p>
+    </div>
+    <canvas id="canvas"></canvas>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = 590;
+canvas.height = 600;
+
+let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+let currentBreathingOffset = 0; 
+let pupilState = null; 
+
+let scratch = {
+    phase: 'idle', // 'idle' | 'appearing' | 'visible' | 'particles'
+    progress: 0,
+    visibleTimer: 0,
+    visibleDuration: 1.2, 
+    particles: [],
+    pathPts: [339,240,321,248,324,240,312,247,301,256,312,239,315,227,314,220,306,222,303,224,311,204,317,211,324,208,329,198,332,184,328,179,321,181,314,185,322,166,327,170,331,169,332,163,369,174,363,183,364,189,367,191,373,192,372,200,377,206,386,208,394,205,400,215,404,225,400,238,398,232,387,231,373,232,376,225,368,227,356,233,364,217,363,213,354,213,346,221,340,229,336,233]
+};
+
+let lastFrame = Date.now();
+window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+});
+
+
+const colors = {
+    white : "#ffffff",
+    skinColor : "#ffe1c5",
+    skinColorShadow : "#e1a185",
+    blackPurpleEye: "#340007",
+    lightPurpleEye: "#e42869",
+    purpleHair: "#98193f",
+    shirtColor1: "#0e0e0e",
+    shirtColor2: "#1b1b1b",
+    green: "#00c692",
+    scratch: "#71142b"
+
+}
+
+function drawPolygon(points,fill){
+    ctx.beginPath(); 
+    ctx.fillStyle = fill;
+    ctx.strokeStyle = 'black'; 
+    ctx.lineWidth = 4;
+    for(let i = 0; i < points.length; i+=2){
+        if(i === 0){
+            ctx.moveTo(points[i], points[i+1]);
+        } else {
+            ctx.lineTo(points[i], points[i+1]);
+        }
+    }            
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+}
+
+function drawPolygon(points, fill, radius, lineWidth) {
+    if (!radius) radius = 0;
+
+    
+
+    ctx.beginPath();
+    ctx.fillStyle = fill;
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = lineWidth || 0;
+    ctx.lineJoin = 'round';
+
+    const n = points.length / 2;
+
+    for (let i = 0; i < n; i++) {
+
+        const prev = {
+            x: points[((i - 1 + n) % n) * 2],
+            y: points[((i - 1 + n) % n) * 2 + 1]
+        };
+        const curr = {
+            x: points[i * 2],
+            y: points[i * 2 + 1]
+        };
+        const next = {
+            x: points[((i + 1) % n) * 2],
+            y: points[((i + 1) % n) * 2 + 1]
+        };
+
+        const v1 = { x: prev.x - curr.x, y: prev.y - curr.y };
+        const v2 = { x: next.x - curr.x, y: next.y - curr.y };
+
+        const len1 = Math.hypot(v1.x, v1.y);
+        const len2 = Math.hypot(v2.x, v2.y);
+
+        const r = Math.min(radius, len1 / 2, len2 / 2);
+
+        const p1 = {
+            x: curr.x + (v1.x / len1) * r,
+            y: curr.y + (v1.y / len1) * r
+        };
+        const p2 = {
+            x: curr.x + (v2.x / len2) * r,
+            y: curr.y + (v2.y / len2) * r
+        };
+
+        if (i === 0) {
+            ctx.moveTo(p1.x, p1.y);
+        } else {
+            ctx.lineTo(p1.x, p1.y);
+        }
+
+        ctx.quadraticCurveTo(curr.x, curr.y, p2.x, p2.y);
+    }
+
+    ctx.closePath();
+    ctx.fill();
+
+    if (lineWidth){
+        ctx.stroke();
+    }
+}
+
+function drawCircle(x, y, radius, fill, lineWidth){
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.fillStyle = fill;
+    ctx.fill();
+    if (lineWidth){
+        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+    }
+}
+
+function drawLine(x1, y1, x2, y2, color, lineWidth){
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lineWidth;
+    ctx.stroke();
+}
+
+function drawSmoothCurve(flatArray, thickness = 3, color = "#000") {
+    const points = [];
+    for (let i = 0; i < flatArray.length; i += 2) {
+        points.push({ x: flatArray[i], y: flatArray[i + 1] });
+    }
+
+    if (points.length < 2) return;
+
+    ctx.lineWidth = thickness;
+    ctx.strokeStyle = color;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+
+    for (let i = 0; i < points.length - 1; i++) {
+        const p0 = points[i - 1] || points[i];
+        const p1 = points[i];
+        const p2 = points[i + 1];
+        const p3 = points[i + 2] || p2;
+
+        const cp1x = p1.x + (p2.x - p0.x) / 6;
+        const cp1y = p1.y + (p2.y - p0.y) / 6;
+
+        const cp2x = p2.x - (p3.x - p1.x) / 6;
+        const cp2y = p2.y - (p3.y - p1.y) / 6;
+
+        ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, p2.x, p2.y);
+    }
+
+    ctx.stroke();
+}
+
+
+
+
+
+
+
+
+
+function drawHead(windOffset = 0, earRotation = 0){
+    //Fața
+    drawPolygon([369,382,405,221,384,184,312,150,256,150,198,166,158,216,177,314,192,371,287,434], colors.skinColor, 30, 3.5);
+    
+    // Ochii
+    const leftEyePolys = [
+        {pts: [232,320,204,323,190,309,205,319], args: ["black"]},
+        {pts: [205,321,231,319,247,313,252,289,237,278,206,272,184,283,187,307], args: [colors.white, 30]},
+        {pts: [196,295,212,293,218,295,226,293,241,294,233,275,208,273,196,286], args: [colors.blackPurpleEye, 3, 3]},
+        {pts: [196,295,212,293,218,292,226,293,241,294,232,311,216,315,199,304], args: [colors.lightPurpleEye, 3, 3]},
+        {pts: [251,289,232,273,207,271,176,287,188,273,176,277,205,263,223,263,237,267,254,278,247,277], args: ["black"]},
+        {pts: [182,266,191,259,188,264], args: ["black"]},
+        {pts: [187,243,210,247,254,266,262,273,255,278,251,270,224,257,207,256,213,251], args: [colors.skinColorShadow]},
+        {pts: [195,258,219,255,197,244,169,240,199,242,205,243,224,251,232,253,244,259,259,268,265,275,252,268,258,286,249,267,252,268,235,260,224,256], args: ["black"]}
+    ];
+    const facePts = [369,382,405,221,380,184,312,154,250,158,198,176,163,216,177,314,192,371,287,434];
+    let xs = [];
+    for (let i = 0; i < facePts.length; i += 2) xs.push(facePts[i]);
+    const minX = Math.min.apply(null, xs);
+    const maxX = Math.max.apply(null, xs);
+    const faceCenterX = (minX + maxX) / 2;
+
+    function mirrorPoints(points, cx){
+        const out = [];
+        for(let i=0;i<points.length;i+=2){
+            const x = points[i], y = points[i+1];
+            const mx = 2*cx - x;
+            out.push(mx, y);
+        }
+        return out;
+    }
+    leftEyePolys.forEach(item => {
+        drawPolygon(item.pts, ...(item.args));
+        const mirrored = mirrorPoints(item.pts, faceCenterX);
+        drawPolygon(mirrored, ...(item.args));
+    });
+
+    function centroid(points){
+        let sx = 0, sy = 0, n = points.length / 2;
+        for (let i = 0; i < points.length; i += 2) { sx += points[i]; sy += points[i+1]; }
+        return { x: sx / n, y: sy / n };
+    }
+
+    const leftWhitePoly = leftEyePolys.find(p => p.args && (p.args[0] === colors.white || p.args[0] === "white"));
+    if (leftWhitePoly) {
+        const leftCenter = centroid(leftWhitePoly.pts);
+        const mirroredCenterArr = mirrorPoints([leftCenter.x, leftCenter.y], faceCenterX);
+        const rightCenter = { x: mirroredCenterArr[0], y: mirroredCenterArr[1] };
+
+        const effectiveMouse = { x: mouse.x, y: mouse.y - currentBreathingOffset };
+
+        function pointInPoly(pt, poly){
+            let inside = false;
+            for (let i = 0, j = poly.length/2 - 1; i < poly.length/2; j = i++){
+                const xi = poly[i*2], yi = poly[i*2+1];
+                const xj = poly[j*2], yj = poly[j*2+1];
+                const intersect = ((yi > pt.y) !== (yj > pt.y)) && (pt.x < (xj - xi) * (pt.y - yi) / (yj - yi) + xi);
+                if (intersect) inside = !inside;
+            }
+            return inside;
+        }
+
+        const isOverFace = pointInPoly(effectiveMouse, facePts);
+
+        function calcPupil(center){
+            const dx = effectiveMouse.x - center.x;
+            const dy = effectiveMouse.y - center.y;
+            const dist = Math.hypot(dx, dy) || 1;
+            const maxOffset = 11; 
+            const fx = (dx / dist) * Math.min(dist, maxOffset);
+            const fy = (dy / dist) * Math.min(dist, maxOffset);
+            const verticalBias = 3; 
+            return { x: center.x + fx, y: center.y + fy - verticalBias };
+        }
+
+        let lp, rp;
+        if (isOverFace) {
+            const verticalBias = 3;
+            lp = { x: leftCenter.x, y: leftCenter.y - verticalBias };
+            rp = { x: rightCenter.x, y: rightCenter.y - verticalBias };
+        } else {
+            lp = calcPupil(leftCenter);
+            rp = calcPupil(rightCenter);
+        }
+
+        if (!pupilState) {
+            pupilState = {
+                left: { x: lp.x, y: lp.y },
+                right: { x: rp.x, y: rp.y }
+            };
+        }
+
+        const lerpAlpha = 0.14;
+        pupilState.left.x += (lp.x - pupilState.left.x) * lerpAlpha;
+        pupilState.left.y += (lp.y - pupilState.left.y) * lerpAlpha;
+        pupilState.right.x += (rp.x - pupilState.right.x) * lerpAlpha;
+        pupilState.right.y += (rp.y - pupilState.right.y) * lerpAlpha;
+
+        function drawDiamondPupil(cx, cy, radius){
+            const top = [cx, cy - radius];
+            const right = [cx + radius, cy];
+            const bottom = [cx, cy + radius];
+            const left = [cx - radius, cy];
+
+            ctx.beginPath();
+            ctx.moveTo(top[0], top[1]);
+            ctx.lineTo(right[0], right[1]);
+            ctx.lineTo(cx, cy);
+            ctx.lineTo(left[0], left[1]);
+            ctx.closePath();
+            ctx.fillStyle = "black";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(right[0], right[1]);
+            ctx.lineTo(bottom[0], bottom[1]);
+            ctx.lineTo(left[0], left[1]);
+            ctx.closePath();
+            ctx.fillStyle = "black";
+            ctx.fill();
+
+            const inner = radius * 0.55;
+            const itop = [cx, cy - inner];
+            const iright = [cx + inner, cy];
+            const ibottom = [cx, cy + inner];
+            const ileft = [cx - inner, cy];
+            ctx.beginPath();
+            ctx.moveTo(itop[0], itop[1]);
+            ctx.lineTo(iright[0], iright[1]);
+            ctx.lineTo(ibottom[0], ibottom[1]);
+            ctx.lineTo(ileft[0], ileft[1]);
+            ctx.closePath();
+            ctx.fillStyle = 'white';
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(cx - inner*0.25, cy - inner*0.25, Math.max(1, inner*0.18), 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255,255,255,0.85)';
+            ctx.fill();
+        }
+
+        drawDiamondPupil(pupilState.left.x, pupilState.left.y, 10.1);
+        drawDiamondPupil(pupilState.right.x, pupilState.right.y, 10.1);
+    }
+
+
+
+
+    //Gura si nas
+    drawPolygon([283,390,295,393,288,400,278,400,271,394], colors.skinColorShadow, 30, 1);
+    drawPolygon([248,370,259,377,281,377,259,374,248,370], "black", 30, 1);
+    drawPolygon([293,377,309,377,325,370,309,375], "black", 30, 1);
+    drawPolygon([277,355,271,350,271,340,275,331,282,324,285,335,283,354], colors.skinColorShadow, 30);
+    drawPolygon([272,349,280,355,275,353], "black");
+    drawPolygon([289,353,297,349,292,350], "black", 30 , 1);
+    drawPolygon([281,332,280,343,282,338], "black", 30 , 0.4);
+    drawPolygon([283,323,284,337,285,330], "black", 30 , 0.4);
+    
+    
+    
+    
+    // Urechea
+    const leftEarPolys = [
+        {pts: [186,350,178,355,164,346,148,327,138,298,140,276,146,264,165,250], args: [colors.skinColor, 30, 3]},
+        {pts: [181,354,171,333,158,324,147,297,148,284,153,272,161,268,168,265,178,320,186,349], args: [colors.skinColorShadow, 30, 1]},
+        {pts: [175,343,173,368,174,368,176,343], args: ["black", 30, 1]},
+        {pts: [165,360,181,371,176,421,169,413,162,416], args: [colors.white, 0, 1]},
+        {pts: [161,431,174,445,176,421,169,413,162,416], args: ["gray", 0, 1]},
+        {pts: [171,368,173,378,171,385,169,378], args: ["black", 30, 1]}
+    ];
+
+    // Funcție pentru rotație în jurul unui punct
+    function rotatePoints(points, angle, centerX, centerY) {
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        const out = [];
+        for (let i = 0; i < points.length; i += 2) {
+            const x = points[i] - centerX;
+            const y = points[i + 1] - centerY;
+            const rx = x * cos - y * sin + centerX;
+            const ry = x * sin + y * cos + centerY;
+            out.push(rx, ry);
+        }
+        return out;
+    }
+
+    const leftEarCircles = [ {x:175, y:342, r:6, fill:"black"} ];
+
+    const leftEarLines = [
+        [171,376,179,380,"black",1],
+        [171,374,180,375,"black",1],
+        [171,379,178,392,"black",1],
+        [171,381,176.5,415,"black",1],
+        [170,383,169,414,"black",1],
+        [171,383,163.5,396,"black",1],
+        [171,378,164,382,"black",1],
+        [171,377,164.5,371,"black",1],
+        [171,373,165,365,"black",1]
+    ];
+
+    const mirrorOffsetX = -6; 
+
+    leftEarPolys.forEach(item => {
+        const isEarCircle = item.args[0] === colors.white || item.args[0] === "gray" || item.args[0] === "black";
+        const animatedPts = isEarCircle ? rotatePoints(item.pts, earRotation, 175, 342) : item.pts;
+        drawPolygon(animatedPts, ...(item.args));
+        let mirrored = mirrorPoints(animatedPts, faceCenterX);
+        for (let i = 0; i < mirrored.length; i += 2) {
+            mirrored[i] = mirrored[i] + mirrorOffsetX;
+        }
+        drawPolygon(mirrored, ...(item.args));
+    });
+
+    leftEarCircles.forEach(c => {
+        drawCircle(c.x, c.y, c.r, c.fill);
+        const mx = 2*faceCenterX - c.x + mirrorOffsetX;
+        drawCircle(mx, c.y, c.r, c.fill);
+    });
+
+    leftEarLines.forEach(l => {
+        const p1 = rotatePoints([l[0], l[1]], earRotation, 175, 342);
+        const p2 = rotatePoints([l[2], l[3]], earRotation, 175, 342);
+        drawLine(p1[0], p1[1], p2[0], p2[1], l[4], l[5]);
+        
+        const mx1 = 2*faceCenterX - l[0] + mirrorOffsetX;
+        const mx2 = 2*faceCenterX - l[2] + mirrorOffsetX;
+        const p1m = rotatePoints([mx1, l[1]], -earRotation, 2*faceCenterX - 175 + mirrorOffsetX, 342);
+        const p2m = rotatePoints([mx2, l[3]], -earRotation, 2*faceCenterX - 175 + mirrorOffsetX, 342);
+        drawLine(p1m[0], p1m[1], p2m[0], p2m[1], l[4], l[5]);
+    });
+
+
+
+
+
+    //parul negru
+    drawPolygon([177,317,171,336,154,348,137,353,152,337,163,313,145,323,111,329,123,316,137,301,146,283,145,263,138,281,125,283,99,284,89,280,99,270,114,258,120,253,96,254,82,253,54,235,45,227,57,226,77,225,93,220,105,212,116,202,124,192,126,165,129,144,133,137,152,121,160,116,154,110,155,101,158,88,165,68,180,60,196,51,217,42,226,37,226,26,225,12,226,2,232,3,234,5,244,13,253,21,239,9,258,27,258,46,264,42,278,40,300,42,326,41,338,32,345,24,348,14,352,8,358,15,362,37,355,56,383,61,414,74,434,88,389,89,411,97,426,104,441,119,451,119,462,113,478,101,485,88,485,109,477,133,469,144,457,152,470,162,475,172,478,197,467,187,454,179,445,176,452,188,461,202,474,209,487,209,504,205,512,203,507,211,493,226,468,242,476,267,463,259,455,256,465,275,492,280,472,299,441,298,445,320,433,310,431,315,447,327,454,330,443,336,431,336,418,329,422,339,434,349,428,353,410,345,395,320,379,330,396,260,400,236,392,200,373,189,384,188,367,176,334,164,304,160,319,155,293,156,267,162,276,152,245,163,255,151,238,159,230,169,215,162,220,169,194,175,201,176,171,199,182,199,164,222], "black");
+    
+    //parul mov
+    drawPolygon([114,326,127,316,139,300,149,283,148,269,143,252,138,239,142,225,149,211,148,231,151,255,155,238,158,258,161,284,163,295,156,282,152,298,146,308,133,322,124,326], colors.purpleHair, 30, 3);
+    drawPolygon([104,282,92,281,122,253,107,253,87,252,72,246,49,230,57,230,74,229,86,226,99,221,109,214,123,200,143,174,154,161,167,158,196,159,162,165,150,178,131,206,113,226,105,233,98,236,88,238,94,243,103,244,118,243,116,248,132,250],colors.purpleHair, 30, 3);
+    drawPolygon([135,183,127,192,131,152,132,140,147,128,160,117,167,119,173,123,172,129,164,125,168,133,158,131,166,137,149,139,154,143,142,145,146,149,140,156,137,164,133,180],colors.purpleHair, 30, 3);
+    drawPolygon([190,135,162,116,156,108,157,99,161,88,168,71,181,63,208,49,225,41,229,34,228,22,226,9,226,2,235,8,250,21,257,29,257,44,256,49,241,60,227,72,220,77,231,59,222,64,232,43,216,58,204,66,186,74,177,92,173,104],colors.purpleHair, 30, 3);
+    drawPolygon([219,78,211,93,210,109,212,115,214,95,221,83,268,49,260,61,276,53,329,59,352,57,358,41,359,24,353,9,350,19,344,29,337,37,329,43,308,42,282,41,266,42],colors.purpleHair, 30, 3);
+    
+    function applyWindToTopPoints(points, windOffset, thresholdY) {
+        const out = [];
+        for (let i = 0; i < points.length; i += 2) {
+            const x = points[i], y = points[i + 1];
+            if (y < thresholdY) {
+                out.push(x + windOffset, y);
+            } else {
+                out.push(x, y);
+            }
+        }
+        return out;
+    }
+    
+    const topSpikePoints = [226,161,229,118,260,87,281,75,315,66,362,65,312,75,353,75,310,85,346,85,363,87,349,91,371,95,392,108,349,104,296,122,252,147,289,130,335,116,369,110,400,115,417,122,441,130,459,133,449,138,427,138,439,149,428,149,454,161,466,184,477,195,468,164,456,152,442,145,456,152,465,146,473,135,480,122,484,94,472,108,456,120,440,121,427,106,407,97,376,88,392,87,432,87,404,70,370,59,337,59,325,61,301,66,265,80,248,86,234,94,225,108,216,131,216,142];
+    drawPolygon(applyWindToTopPoints(topSpikePoints, windOffset, 150), colors.purpleHair, 3, 3);
+    
+    drawPolygon([432,173,443,191,439,222,427,272,421,294,428,311,452,330,437,335,418,304,416,293,434,228,425,254,426,231,418,254,423,226,421,197,428,219,435,206,435,186],colors.purpleHair, 30, 3);
+    drawPolygon([490,280,481,290,452,274,448,246,464,238,475,229,482,217,458,208,452,196,466,208,476,210,491,210,511,203,497,219,466,242,474,263,452,253,465,279],colors.purpleHair, 30, 3);
+
+
+}
+
+
+
+function drawBody(){
+    drawPolygon([217,380,350,389,351,414,319,420,295,422,273,420,254,419,237,417,217,414], colors.skinColorShadow, 3, 3)
+    drawPolygon([210,410,232,416,256,419,284,419,317,420,336,417,352,413,362,413,365,420,361,424,364,429,360,434,360,443,362,460,346,465,332,470,311,475,292,478,271,479,247,476,227,470,207,461,201,457,204,433,198,429,202,425,200,417,203,414],colors.shirtColor1, 30, 2)
+    drawPolygon([207,413,228,418,258,419,305,421,333,418,355,413,363,415,363,422,359,426,365,428,361,433,351,438,306,442,306,476,285,480,264,479,263,441,250,441,227,438,205,435,199,428,204,425,200,418],colors.white, 30, 3)
+    drawLine(204,425,272,434, "black", 1.5);
+    drawLine(275,478,272,434, "black", 1.5);
+    drawLine(297,477,296,435, "black", 1.5);
+    drawLine(296,435.5,360,425.5, "black", 1.5);
+    drawLine(285,426,285,479, "black", 3);
+
+    drawPolygon([201,430,188,439,178,450,160,454,154,449,142,449,126,455,95,468,86,473,79,481,41,495,33,498,26,510,21,522,11,553,6,584,5,620,164,620,163,578,165,555,170,521,180,484,192,463,203,451,203,436], colors.shirtColor2, 2, 3);
+    drawPolygon([158,453,145,449,130,455,93,470,84,474,63,519,47,570,40,620,100,620,104,571,114,541,127,506,143,470,149,460], colors.white, 8, 3)
+    drawSmoothCurve([148,450,124,492,104,547,90,620],2);
+    drawPolygon([145,466,167,465,153,491,171,457,178,457,186,457,193,460,184,475,175,500,167,535,164,567,108,566,111,549,125,513,138,481], colors.green,3,2)
+    drawPolygon([7,570,49,567,40,620,15,620,4,620], colors.green,3,2)
+
+    drawPolygon([364,430,374,436,385,450,405,455,409,448,415,449,432,452,471,463,478,467,482,477,490,481,511,487,530,497,540,508,550,524,563,547,577,582,582,620,398,620,388,588,388,575,383,541,379,514,367,472,360,460,361,450,359,438,362,433], colors.shirtColor2,2,3);
+    drawPolygon([372,466,378,461,387,460,396,463,400,471,413,500,401,468,407,469,418,469,426,486,438,512,450,548,465,567,438,567,394,568,393,542,385,498,377,473],colors.green,3,1.5);
+    drawPolygon([514,568,570,567,575,579,580,620,516,620],colors.green,3,1.5);
+    drawPolygon([405,455,409,449,416,449,427,450,440,453,454,459,470,463,477,466,482,478,492,500,502,522,511,555,516,574,521,620,463,620,462,586,453,557,439,512,426,484,415,463,410,456], colors.white,2,3);
+    drawSmoothCurve([412,449,430,475,452,522,464,561,471,620],2);
+
+    drawPolygon([198,453,211,464,232,472,257,478,287,479,313,476,339,466,359,460,366,459,374,471,383,496,392,546,397,590,397,620,165,620,162,579,163,558,166,531,172,508,182,481], colors.shirtColor1,0,2)
+    drawCircle(281,515,20, colors.white,2);
+    drawLine(255,477,253,598,"black",3)
+    drawPolygon([337,576,393,576,394,584,337,583],colors.white,0,2);
+
+
+}
+
+
+
+function updateScratch(dt){
+    if(scratch.phase === 'idle') return;
+
+    if(scratch.phase === 'appearing'){
+        scratch.progress += dt * 1.6;
+        if(scratch.progress >= 1){
+            scratch.progress = 1;
+            scratch.phase = 'visible';
+            scratch.visibleTimer = 0;
+        }
+    } else if(scratch.phase === 'visible'){
+        scratch.visibleTimer += dt;
+        if(scratch.visibleTimer >= scratch.visibleDuration){
+            
+        }
+    } else if(scratch.phase === 'particles'){
+        for(let i = scratch.particles.length - 1; i >= 0; i--){
+            const p = scratch.particles[i];
+            p.age += dt;
+            if(p.age >= p.life){
+                scratch.particles.splice(i,1);
+                continue;
+            }
+            p.vx *= (1 - Math.min(0.08, dt * 2));
+            p.vy += 300 * dt;
+            p.x += p.vx * dt;
+            p.y += p.vy * dt;
+            p.alpha = Math.max(0, 1 - p.age / p.life);
+        }
+
+        if(scratch.particles.length === 0){
+            scratch.phase = 'idle';
+            scratch.progress = 0;
+            scratch.visibleTimer = 0;
+        }
+    }
+}
+
+function drawScratch(){
+    if(scratch.phase === 'idle') return;
+
+    if(scratch.phase === 'appearing' || scratch.phase === 'visible'){
+        ctx.save();
+        ctx.globalAlpha = 0.35 + 0.65 * scratch.progress;
+        drawPolygon(scratch.pathPts, colors.purpleHair, 18, 2);
+
+        ctx.globalAlpha = 0.9 * scratch.progress;
+        ctx.lineWidth = 4 + 12 * scratch.progress;
+        const pts = scratch.pathPts;
+        ctx.beginPath();
+        ctx.moveTo(pts[0], pts[1]);
+        for(let i = 2; i < pts.length; i += 2){
+            ctx.lineTo(pts[i], pts[i+1]);
+        }
+        
+        ctx.restore();
+    }
+
+    if(scratch.phase === 'particles'){
+        for(const p of scratch.particles){
+            ctx.save();
+            ctx.globalAlpha = p.alpha;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+}
+
+function startExplosion(){
+    scratch.phase = 'particles';
+    scratch.particles = [];
+    const N = 80;
+    const pts = scratch.pathPts;
+    for(let i = 0; i < N; i++){
+        const idx = Math.floor(Math.random() * (pts.length/2 - 1));
+        const x1 = pts[idx*2], y1 = pts[idx*2+1];
+        const x2 = pts[(idx+1)*2], y2 = pts[(idx+1)*2+1];
+        const t = Math.random();
+        const x = x1 + (x2 - x1) * t + (Math.random() - 0.5) * 6;
+        const y = y1 + (y2 - y1) * t + (Math.random() - 0.5) * 6;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 80 + Math.random() * 300;
+        const vx = Math.cos(angle) * speed;
+        const vy = Math.sin(angle) * speed - 60
+        const life = 0.8 + Math.random() * 1.0;
+        const r = 1 + Math.random() * 3;
+        scratch.particles.push({ x, y, vx, vy, age: 0, life, r, alpha: 1, color: colors.purpleHair });
+    }
+}
+
+
+let startTime = Date.now();
+function animate() {
+    const elapsed = (Date.now() - startTime) / 1000;
+    const breathingOffset = Math.sin(elapsed * 1.5) * 6; // oscilare ± 6 pixeli
+    const windOffset = Math.sin(elapsed * 0.8) * 8; // vânt oscilant ± 8 pixeli
+    const earRotation = breathingOffset * 0.02; // rotația cerceilor
+    
+    currentBreathingOffset = breathingOffset;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const now = Date.now();
+    const dt = (now - lastFrame) / 1000;
+    lastFrame = now;
+
+    ctx.save();
+    ctx.translate(0, breathingOffset);
+    drawBody();
+    drawHead(windOffset, earRotation);
+
+    updateScratch(dt);
+    drawScratch();
+
+    ctx.restore();
+
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener("click", () => {
+    if(scratch.phase === 'idle'){
+        scratch.phase = 'appearing';
+        scratch.progress = 0;
+        scratch.visibleTimer = 0;
+    } else if(scratch.phase === 'visible'){
+        startExplosion();
+    }
+});
+
+animate();
+// drawBody();
+// drawHead();
+// drawScratch();
+</script>
+
+
+</body>
+</html>

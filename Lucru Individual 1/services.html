@@ -55,13 +55,124 @@
             }
         }
     }
+    @keyframes logo_animation{
+    from{
+        transform: translate(-20px);
+    }
+    to{
+        
+        transform: translate(20px);
+    }
+}
 
-
+    .logo{
+        animation: logo_animation 1.5s ease-in-out infinite alternate;
+    }
 
     .container{
         width: 80vw;
         margin: 0 auto;
     }
+
+
+    section.our-services{
+        margin-top: 100px;
+        height: 300px;
+        /* background-color: red; */
+        display: flex;
+
+        >div:nth-of-type(2){
+            height: 300px;
+            /* background-color: blue; */
+            width: 70%;
+
+            /* transform: translateY(50px); */
+            line-height: 40px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-family: Montserrat;
+        }
+    }
+
+    .content-1{
+        color: black;
+        font-family: Oswald;
+        display: flex;
+        flex-direction: column;
+        height: 300px;
+        justify-content: space-around;
+        width: 30%;
+
+        p{
+            font-size: 20px;
+        }
+        h2{
+            font-size: 50px;
+            line-height: 1.2;
+        }
+        hr{
+            background-color: #f7992b;
+        }
+    }
+
+
+    section.services-list{
+        height: 600px;
+        margin-top: 100px;
+        margin-bottom: 100px;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+
+
+
+        
+        
+
+        >div{
+            height: 200px;
+            display: flex;
+            
+            width: 45%;
+            /* background-color: red; */
+            
+            font-family: Oswald;
+            h2{
+                font-size: 32px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            p{
+                font-family: Montserrat;
+                font-size: 18px;
+                font-weight: 300;
+            }
+            img{
+                height: 120px;
+                padding: 20px;
+
+                animation: pulsing 1s cubic-bezier(0.215, 0.610, 0.355, 1) infinite alternate both;
+            }
+            
+            
+            
+        }
+        
+    }
+
+
+    @keyframes pulsing{
+        0% {
+            transform: scale(1) translateY(0px);
+        }
+        100% {
+            transform: scale(1.2) translateY(-10px); 
+        }
+    }
+
 </style>
 <body>
     <header>
@@ -74,10 +185,69 @@
                     <li><a href="index.html" >HOME</a></li>
                     <li><a href="about.html" >ABOUT</a></li>
                     <li><a href="services.html" style="color: #f7992b;">SERVICES </a></li>
-                    <li><a href="blog.html">BLOG</a></li>
                 </ul>
             </div>
         </div>
     </header>
+
+    <section class="our-services container">
+        <div class="content-1">
+            <p>OUR SERVICES</p>
+            <h2>LOOK OUR <br>BEST SERVICES</h2>
+            <hr>
+        </div>
+        <div>
+            <p>Explore the history of the classic Lorem Ipsum passage and generate your own text using any number of characters, words, sentences or paragraphs. Commonly used as placeholder text in the graphic and print industries, Lorem Ipsum’s origins extend far back to a scrambled Latin passage.</p>
+        </div>
+    </section>
+    <section class="services-list container">
+        <div>
+            <img src="https://ld-wp.template-help.com/wordpress_free/23520/wp-content/uploads/2019/04/pencil-ruler.png" alt="" id="img1">
+            <div>
+                <h2>INTERIOR PLANING</h2>
+                <p>A relaxing bathroom helps you start and end your day in good spirits. It’s beneficial to have well designed storage to keep an open, clean feel.</p>
+            </div>
+        </div>
+        <div>
+            <img src="https://ld-wp.template-help.com/wordpress_free/23520/wp-content/uploads/2019/04/map.png" alt="" id="img2">
+            <div>
+                <h2>LANDSPACING</h2>
+                <p>We all are living busy lives, giving time to family, friends, and work, hence our bedroom is oftentimes the place where we go to relax and escape everyday life struggles.</p>
+            </div>
+        </div>
+        <div>
+            <img src="https://ld-wp.template-help.com/wordpress_free/23520/wp-content/uploads/2019/04/tree.png" alt="" id="img3">
+            <div>
+                <h2>DECORATION</h2>
+                <p>For improving entire appeal of the house homeowners can opt for the renovation projects. Unique renovation can completely.</p>
+            </div>
+        </div>
+        
+        <div>
+            <img src="https://ld-wp.template-help.com/wordpress_free/23520/wp-content/uploads/2019/04/couch.png" alt="" id="img4">
+            <div>
+                <h2>INTERIOR DESIGN</h2>
+                <p>We combine decades of design projecting experience with an unrelenting dedication to setting new benchmarks in the lighting marketplace.</p>
+            </div>
+        </div>
+        
+        <div>
+            <img src="https://ld-wp.template-help.com/wordpress_free/23520/wp-content/uploads/2019/04/apartment.png" alt="" id="img5">
+            <div>
+                <h2>ARCHITECTURE</h2>
+                <p>We offer dozens of custom options - from special finishes to hand-applied gilding to a choice of leg styles on some pieces, and even more choices.</p>
+            </div>
+        </div>
+        
+        <div>
+            <img src="https://ld-wp.template-help.com/wordpress_free/23520/wp-content/uploads/2019/04/color-sampler.png" alt="" id="img6">
+            <div>
+                <h2>STYLE SELECTION</h2>
+                <p>We understand that most homeowners don’t undertake major exterior replacements and redesign projects more than once, and that’s why our goal.</p>
+            </div>
+        </div>
+        
+
+    </section>
 </body>
 </html>
